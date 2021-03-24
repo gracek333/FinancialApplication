@@ -64,3 +64,15 @@ bool UserManager :: isLoginExisting(string login)
     }
     return false;
 }
+
+void UserManager :: printAllUsers()
+{
+    for (int i = 0; i< users.size(); i++)
+    {
+        cout << users[i].getId() << endl;
+        cout << users[i].getName() << endl;
+        cout << users[i].getSurname() << endl;
+        cout << users[i].getLogin() << endl;
+        cout << users[i].getPassword() << endl;
+    }
+}

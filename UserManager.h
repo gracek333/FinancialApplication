@@ -28,6 +28,7 @@ public:
     };
 
     void registerNewUser();
+    void printAllUsers();
     /*void wypiszWszystkichUzytkownikow();
     void logowanieUzytkownika();
     void zmianaHaslaZalogowanegoUzytkownika();

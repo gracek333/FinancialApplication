@@ -7,5 +7,7 @@ int main()
 {
     FinancialApplication financialApplication;
     financialApplication.registerNewUser();
+    financialApplication.registerNewUser();
+    financialApplication.printAllUsers();
     return 0;
 }

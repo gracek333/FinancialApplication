@@ -14,6 +14,7 @@ class FinancialApplication
 public:
 
     void registerNewUser();
+    void printAllUsers();
 
 };
 
