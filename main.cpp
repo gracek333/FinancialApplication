@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    FinancialApplication financialApplication;
+    FinancialApplication financialApplication("users.xml");
     financialApplication.registerNewUser();
     financialApplication.registerNewUser();
     financialApplication.printAllUsers();

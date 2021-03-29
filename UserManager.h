@@ -8,6 +8,7 @@
 #include <sstream>
 
 #include "User.h"
+#include "UsersFile.h"
 
 using namespace std;
 
@@ -15,16 +16,17 @@ class UserManager
 {
     int loggedInUserId;
     vector <User> users;
-    //PlikZUzytkownikami plikZUzytkownikami;
+    UsersFile usersFile;
 
     User inputNewUserData();
     int getIdForNewUser();
     bool isLoginExisting(string login);
 
 public:
-    UserManager()
+    UserManager(string usersFileName) : usersFile(usersFileName)
     {
         loggedInUserId = 0;
+        //uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
     };
 
     void registerNewUser();

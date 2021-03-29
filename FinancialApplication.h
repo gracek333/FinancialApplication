@@ -12,7 +12,9 @@ class FinancialApplication
     UserManager userManager;
 
 public:
-
+    FinancialApplication(string usersFileName) : userManager(usersFileName)
+    {
+    };
     void registerNewUser();
     void printAllUsers();
 
