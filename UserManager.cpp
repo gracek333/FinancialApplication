@@ -2,7 +2,7 @@
 
 void UserManager :: registerNewUser()
 {
-    system("cls");
+    //system("cls");
     cout << endl << "Rejestracja uzytkownika: " << endl << endl;
 
     User user = inputNewUserData();
