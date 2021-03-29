@@ -20,8 +20,8 @@ public:
     UsersFile(string usersFileName) : USERS_FILE_NAME(usersFileName) {}; // NAZWA_PLIKU(nazwaPliku) {};
     string getUsersFileName();
     void addUserDataToFile(User user);
-    /*vector <Uzytkownik> wczytajUzytkownikowZPliku();
-    void zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy);*/
+    vector <User> getUsersDataFromFile();
+//    void zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy);*/
 };
 
 #endif

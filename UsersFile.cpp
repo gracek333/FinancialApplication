@@ -27,5 +27,37 @@ void UsersFile :: addUserDataToFile(User user)
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());
 
-    xml.Save("users.xml");
+    xml.Save(USERS_FILE_NAME);
+}
+
+vector <User> UsersFile :: getUsersDataFromFile()
+{
+    User user;
+    vector <User> users;
+    CMarkup xml;
+    bool fileExists = xml.Load( USERS_FILE_NAME );
+    if (fileExists)
+    {
+        xml.ResetPos();
+        xml.FindElem();
+        xml.IntoElem();
+        while (xml.FindElem("User"))
+        {
+            xml.FindChildElem("UserId");
+            user.setId(atoi(xml.GetChildData().c_str()));
+            xml.FindChildElem("Login");
+            user.setLogin(xml.GetChildData());
+            xml.FindChildElem("Password");
+            user.setPassword(xml.GetChildData());
+            xml.FindChildElem("Name");
+            user.setName(xml.GetChildData());
+            xml.FindChildElem("Surname");
+            user.setSurname(xml.GetChildData());
+
+            users.push_back(user);
+        }
+        xml.Save(USERS_FILE_NAME);
+    }
+
+    return users;
 }

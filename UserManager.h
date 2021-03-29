@@ -26,7 +26,7 @@ public:
     UserManager(string usersFileName) : usersFile(usersFileName)
     {
         loggedInUserId = 0;
-        //uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+        users = usersFile.getUsersDataFromFile();
     };
 
     void registerNewUser();
