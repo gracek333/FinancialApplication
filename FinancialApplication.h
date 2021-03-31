@@ -20,6 +20,7 @@ public:
     void printAllUsers();
     void logInUser();
     char chooseOptionInMainMenu();
+    char chooseOptionInUserMenu();
     bool isUserLoggedIn();
 
 };

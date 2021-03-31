@@ -34,12 +34,34 @@ int main()
         }
         else
         {
-            financialApplication.printAllUsers();
-            system("pause");
-            break;
+            choice = financialApplication.chooseOptionInUserMenu();
 
+            switch (choice)
+            {
+            case '1':
+                //financialApplication.addIncome();
+                break;
+            case '2':
+                //financialApplication.addExpense();
+                break;
+            case '3':
+                //financialApplication.showBalanceForCurrentMonth();
+                break;
+            case '4':
+                //financialApplication.showBalanceForPreviosMonth();
+                break;
+            case '5':
+                //financialApplication.showBalanceForSelectedPeriod();
+                break;
+            case '6':
+                //financialApplication.changeLoggedInUserPassword();
+                break;
+            case '7':
+                //financialApplication.logOut();
+                break;
+
+            }
         }
     }
-
     return 0;
 }
