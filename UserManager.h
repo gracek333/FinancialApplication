@@ -32,6 +32,7 @@ public:
     void registerNewUser();
     void printAllUsers();
     void logInUser();
+    bool isUserLoggedIn();
    /* void zmianaHaslaZalogowanegoUzytkownika();
     void wylogowanieUzytkownika();
     bool czyUzytkownikJestZalogowany();
