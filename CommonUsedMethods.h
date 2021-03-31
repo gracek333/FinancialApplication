@@ -13,6 +13,7 @@ class CommonUsedMethods
 public:
 
     static string getPhrase();
+    static char getChar();
 
 };
 

@@ -112,3 +112,11 @@ void UserManager :: logInUser()
     system("pause");
     return;
 }
+
+bool UserManager :: isUserLoggedIn()
+{
+    if (loggedInUserId > 0)
+        return true;
+    else
+        return false;
+}

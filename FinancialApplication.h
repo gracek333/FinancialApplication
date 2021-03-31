@@ -19,6 +19,8 @@ public:
     void registerNewUser();
     void printAllUsers();
     void logInUser();
+    char chooseOptionInMainMenu();
+    bool isUserLoggedIn();
 
 };
 
