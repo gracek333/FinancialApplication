@@ -17,6 +17,16 @@ void FinancialApplication :: logInUser()
     userManager.logInUser();
 }
 
+void FinancialApplication :: logOutUser()
+{
+    userManager.logOutUser();
+    /*
+    delete financesManager;
+    financesManager = NULL;
+    */
+
+}
+
 bool FinancialApplication :: isUserLoggedIn()
 {
     return userManager.isUserLoggedIn();
