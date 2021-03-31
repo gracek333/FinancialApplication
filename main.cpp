@@ -57,7 +57,7 @@ int main()
                 //financialApplication.changeLoggedInUserPassword();
                 break;
             case '7':
-                //financialApplication.logOut();
+                financialApplication.logOutUser();
                 break;
 
             }
