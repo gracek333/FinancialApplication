@@ -6,7 +6,13 @@ void FinancialApplication :: registerNewUser()
 {
     userManager.registerNewUser();
 }
+
 void FinancialApplication :: printAllUsers()
 {
     userManager.printAllUsers();
+}
+
+void FinancialApplication :: logInUser()
+{
+    userManager.logInUser();
 }

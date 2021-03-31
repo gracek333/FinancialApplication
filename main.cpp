@@ -9,8 +9,9 @@ int main()
     /*financialApplication.registerNewUser();
     financialApplication.registerNewUser();*/
     financialApplication.printAllUsers();
-    financialApplication.registerNewUser();
-    financialApplication.registerNewUser();
+    financialApplication.logInUser();
+    /*financialApplication.registerNewUser();
+    financialApplication.registerNewUser();*/
     financialApplication.printAllUsers();
 
     return 0;
