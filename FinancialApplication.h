@@ -15,8 +15,10 @@ public:
     FinancialApplication(string usersFileName) : userManager(usersFileName)
     {
     };
+
     void registerNewUser();
     void printAllUsers();
+    void logInUser();
 
 };
 

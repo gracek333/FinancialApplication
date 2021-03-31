@@ -31,9 +31,8 @@ public:
 
     void registerNewUser();
     void printAllUsers();
-    /*void wypiszWszystkichUzytkownikow();
-    void logowanieUzytkownika();
-    void zmianaHaslaZalogowanegoUzytkownika();
+    void logInUser();
+   /* void zmianaHaslaZalogowanegoUzytkownika();
     void wylogowanieUzytkownika();
     bool czyUzytkownikJestZalogowany();
     int pobierzIdZalogowanegoUzytkownika();*/
