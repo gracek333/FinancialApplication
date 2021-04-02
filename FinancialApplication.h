@@ -19,6 +19,7 @@ public:
     void registerNewUser();
     void printAllUsers();
     void logInUser();
+    void changeLoggedInUserPassword();
     void logOutUser();
     char chooseOptionInMainMenu();
     char chooseOptionInUserMenu();

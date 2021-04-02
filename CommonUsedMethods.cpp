@@ -25,3 +25,11 @@ char CommonUsedMethods :: getChar()
     }
     return character;
 }
+
+string CommonUsedMethods :: convertIntIntoString(int number)
+{
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}

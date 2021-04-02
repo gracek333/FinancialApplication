@@ -21,6 +21,7 @@ public:
     string getUsersFileName();
     void addUserDataToFile(User user);
     vector <User> getUsersDataFromFile();
+    void saveChangedUserDataToFile(User user);
 //    void zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy);*/
 };
 

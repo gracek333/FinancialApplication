@@ -54,7 +54,9 @@ int main()
                 //financialApplication.showBalanceForSelectedPeriod();
                 break;
             case '6':
-                //financialApplication.changeLoggedInUserPassword();
+                financialApplication.changeLoggedInUserPassword();
+                /*financialApplication.printAllUsers();
+                system("pause");*/
                 break;
             case '7':
                 financialApplication.logOutUser();
