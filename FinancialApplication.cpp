@@ -27,6 +27,11 @@ void FinancialApplication :: logOutUser()
 
 }
 
+void FinancialApplication :: changeLoggedInUserPassword()
+{
+    userManager.changeLoggedInUserPassword();
+}
+
 bool FinancialApplication :: isUserLoggedIn()
 {
     return userManager.isUserLoggedIn();

@@ -61,3 +61,33 @@ vector <User> UsersFile :: getUsersDataFromFile()
 
     return users;
 }
+
+void UsersFile :: saveChangedUserDataToFile(User user)
+{
+    CMarkup xml;
+    string strFindItem = CommonUsedMethods::convertIntIntoString(user.getId());
+    bool fileExists = xml.Load( USERS_FILE_NAME );
+
+    if (fileExists)
+    {
+        xml.ResetPos();
+        xml.FindElem();
+        xml.IntoElem();
+        while ( xml.FindElem("User") )
+        {
+            xml.FindChildElem( "UserId" );
+            if ( xml.GetChildData() == strFindItem )
+                while (xml.FindChildElem("Password"))
+                {
+                    xml.SetChildData(user.getPassword());
+                }
+        }
+    }
+
+    else
+    {
+        cout << "Nie mozna otworzyc pliku " << USERS_FILE_NAME << endl ;
+        system("pause");
+    }
+    xml.Save(USERS_FILE_NAME);
+}

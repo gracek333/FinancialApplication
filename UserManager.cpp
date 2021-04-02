@@ -9,7 +9,7 @@ void UserManager :: registerNewUser()
 
     users.push_back(user);
 
-    usersFile.addUserDataToFile(user); //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+    usersFile.addUserDataToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
@@ -116,6 +116,34 @@ void UserManager :: logInUser()
 void UserManager :: logOutUser()
 {
     loggedInUserId = 0;
+}
+
+void UserManager :: changeLoggedInUserPassword()
+{
+    system("cls");
+    User user;
+    cout << endl << "Zmiana hasla: " << endl << endl;
+    string newPassword = "";
+    cout << "Podaj nowe haslo: ";
+    cin >> newPassword;
+
+    for (int i = 0; i < users.size(); i++)
+    {
+        if (users[i].getId() == getLoggedInUserId())
+        {
+            users[i].setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            user = users[i];
+            system("pause");
+        }
+    }
+
+    usersFile.saveChangedUserDataToFile(user);
+}
+
+int UserManager :: getLoggedInUserId()
+{
+    return loggedInUserId;
 }
 
 bool UserManager :: isUserLoggedIn()

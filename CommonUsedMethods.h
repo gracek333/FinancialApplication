@@ -14,6 +14,7 @@ public:
 
     static string getPhrase();
     static char getChar();
+    static string convertIntIntoString(int number);
 
 };
 
