@@ -1,15 +1,14 @@
 #include "FinancesManager.h"
 #include "CommonUsedMethods.h"
+#include "DateManager.h"
 
 void FinancesManager :: addIncome()
 {
     Income income;
-
-    system("cls");
-    cout << " >>> DODAWANIE NOWEGO PRZYCHODU <<<" << endl << endl;
     income = inputNewIncomeData();
 
     incomes.push_back(income);
+
    /* if (incomesFile.addIncomeToFile(income))
     {
         cout << "Nowy adresat zostal dodany. " << endl;
@@ -24,21 +23,43 @@ void FinancesManager :: addIncome()
 
 Income FinancesManager :: inputNewIncomeData()
 {
+    char choice;
     Income income;
     int incomeId, userId;
-    string date, item, amount;
+    long int date;
+    string item, amount;
 
     income.setIncomeId(1);
     income.setUserId(LOGGED_IN_USER_ID);
 
-    cout << "Podaj date: ";
-    date = CommonUsedMethods :: getPhrase();
+    system ("cls");
+    cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
 
-    cout << "Podaj kategorie: ";
+    while (true)
+    {
+        cout << "Czy przychod dotyczy dnia dzisiejszego? (t / n):  ";
+        choice = CommonUsedMethods :: getChar();
+
+        if(choice == 't' || choice == 'T')
+        {
+            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromSystem());
+            break;
+        }
+        else if (choice == 'n' || choice == 'N')
+        {
+            //date = DateManager :: convertDateToInt(DateManager :: getDateFromUser);
+            break;
+        }
+        else
+        {
+            cout << "Wpisales bledny znak. Sprobuj ponownie." << endl;
+        }
+    }
+    cout << "Podaj kategorie przychodu: ";
     item = CommonUsedMethods :: getPhrase();
 
     cout << "Podaj kwote: ";
-    amount = CommonUsedMethods :: getPhrase();
+    //amount = CommonUsedMethods :: replaceCommaWithDot(CommonUsedMethods :: getPhrase());
 
     income.setDate(date);
     income.setItem(item);

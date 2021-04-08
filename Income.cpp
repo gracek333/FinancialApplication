@@ -10,7 +10,7 @@ void Income :: setUserId(int newUserId)
     if (newUserId >= 0)
         userId = newUserId;
 }
-void Income :: setDate(string newDate)
+void Income :: setDate(long int newDate)
 {
     date = newDate;
 }
@@ -31,7 +31,7 @@ int Income :: getUserId()
 {
     return userId;
 }
-string Income :: getDate()
+long int Income :: getDate()
 {
     return date;
 }

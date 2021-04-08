@@ -8,18 +8,19 @@ using namespace std;
 class Income
 {
     int incomeId, userId;
-    string date, item, amount;
+    long int date;
+    string item, amount;
 
 public:
     void setIncomeId(int newId);
     void setUserId(int newUserId);
-    void setDate(string newDate);
+    void setDate(long int newDate);
     void setItem(string newItem);
     void setAmount(string newAmount);
 
     int getIncomeId();
     int getUserId();
-    string getDate();
+    long int getDate();
     string getItem();
     string getAmount();
 };
