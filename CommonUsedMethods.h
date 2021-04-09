@@ -20,7 +20,7 @@ public:
     static bool isNumberFromUserCorrect(string inputData);
     static string replaceCommaWithDot(string inputData);
     static float convertStringToFloat(string inputDataWithDot);
-
+    static string convertFloatToString(float numberInFloat);
 };
 
 #endif

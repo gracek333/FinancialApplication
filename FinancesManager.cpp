@@ -9,28 +9,32 @@ void FinancesManager :: addIncome()
 
     incomes.push_back(income);
 
-   /* if (incomesFile.addIncomeToFile(income))
-    {
-        cout << "Nowy adresat zostal dodany. " << endl;
-    }
-    else
-    {
-        cout << "Blad. Nie udalo sie dodac nowego adresata. " << endl;
-    }*/
+    incomesFile.addIncomeToFile(income);
+
+    cout << "Nowy przychod zostal dodany. " << endl;
+
+
     showAllIncomes();
     system ("pause");
+}
+
+int FinancesManager :: getIdForNewIncome()
+{
+    if (incomes.empty() == true)
+        return 1;
+    else
+        return incomes.back().getIncomeId() + 1;
 }
 
 Income FinancesManager :: inputNewIncomeData()
 {
     char choice;
     Income income;
-    int incomeId, userId;
     long int date;
     float amount;
     string item;
 
-    income.setIncomeId(1); // wstepnie
+    income.setIncomeId(getIdForNewIncome());
     income.setUserId(LOGGED_IN_USER_ID);
 
     system ("cls");

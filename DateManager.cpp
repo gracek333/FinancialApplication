@@ -134,7 +134,7 @@ bool DateManager :: isDateExisting(string date)
     bool isDateCorrect = false;
     bool isDateExisting = false;
 
-    if ((dateFromUser.getYear() >= 2000) && (dateFromUser.getYear() <= 2020))
+    if ((dateFromUser.getYear() >= 2000) && (dateFromUser.getYear() <= 2021))
     {
         if ((dateFromUser.getMonth() >= 1) && (dateFromUser.getMonth() <= 12))
         {
@@ -177,4 +177,51 @@ int DateManager :: returnTotalNumberOfDaysInMonth(int year, int month)
         numberOfDaysInMonth = 30;
 
     return numberOfDaysInMonth;
+}
+
+string DateManager :: convertDateInIntToString(int dateInInt)
+{
+    Date date;
+    string dateInString = "";
+
+    date = convertDateFromIntToStructure(dateInInt);
+    dateInString = convertDateToString(date);
+
+    return dateInString;
+}
+
+Date DateManager :: convertDateFromIntToStructure(int dateInInt)
+{
+    Date date;
+
+    date.setYear(dateInInt / 10000);
+    date.setMonth((dateInInt - (date.getYear() * 10000)) / 100);
+    date.setDay(dateInInt - (date.getYear() * 10000) - (date.getMonth() * 100));
+
+    return date;
+}
+
+string DateManager :: convertDateToString(Date date)
+{
+    string dateInString = "";
+    string year, month, day;
+
+    year = CommonUsedMethods::convertIntIntoString(date.getYear());
+    month = doAddZero(CommonUsedMethods::convertIntIntoString(date.getMonth()));
+    day = doAddZero(CommonUsedMethods::convertIntIntoString(date.getDay()));
+
+
+
+    dateInString = year + "-" + month + "-" + day;
+
+    return dateInString;
+}
+
+string DateManager :: doAddZero(string monthOrDay)
+{
+    if(monthOrDay.length() == 1)
+    {
+        monthOrDay = "0" + monthOrDay;
+    }
+    return monthOrDay;
 }

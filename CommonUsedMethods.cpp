@@ -99,3 +99,11 @@ float CommonUsedMethods :: convertStringToFloat(string inputDataWithDot)
     number = atof(inputDataWithDot.c_str());
     return number;
 }
+
+string CommonUsedMethods :: convertFloatToString(float numberInFloat)
+{
+    ostringstream ss;
+    ss << numberInFloat;
+    string str = ss.str();
+    return str;
+}

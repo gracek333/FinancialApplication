@@ -22,6 +22,7 @@ class FinancesManager
     IncomesFile incomesFile;
     ExpensesFile expensesFile;
 
+    int getIdForNewIncome();
     Income inputNewIncomeData();
 
 public:

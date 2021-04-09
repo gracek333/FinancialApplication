@@ -5,6 +5,8 @@
 #include <vector>
 #include <fstream>
 
+#include "Income.h"
+
 using namespace std;
 
 class IncomesFile
@@ -14,7 +16,7 @@ class IncomesFile
 public:
     IncomesFile(string incomesFileName) : INCOMES_FILE_NAME(incomesFileName) {};
     string getIncomesFileName();
-
+    void addIncomeToFile(Income income);
 };
 
 #endif
