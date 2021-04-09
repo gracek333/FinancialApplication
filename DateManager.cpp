@@ -87,14 +87,10 @@ bool DateManager :: isDateCorrect(string date)
 {
     if (isDateFormatCorrect(date))
     {
-        cout << "poprawny format daty: " << date << endl;
-
         if (isDateExisting(date))
         {
-             cout << "poprawna Date: " << date << endl;
              return true;
         }
-
     }
     return false;
 }
@@ -137,7 +133,6 @@ bool DateManager :: isDateExisting(string date)
 
     bool isDateCorrect = false;
     bool isDateExisting = false;
-    int year, month, day;
 
     if ((dateFromUser.getYear() >= 2000) && (dateFromUser.getYear() <= 2020))
     {

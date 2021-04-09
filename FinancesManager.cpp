@@ -27,7 +27,8 @@ Income FinancesManager :: inputNewIncomeData()
     Income income;
     int incomeId, userId;
     long int date;
-    string item, amount;
+    float amount;
+    string item;
 
     income.setIncomeId(1); // wstepnie
     income.setUserId(LOGGED_IN_USER_ID);
@@ -59,7 +60,7 @@ Income FinancesManager :: inputNewIncomeData()
     item = CommonUsedMethods :: getPhrase();
 
     cout << "Podaj kwote: ";
-    //amount = CommonUsedMethods :: replaceCommaWithDot(CommonUsedMethods :: getPhrase());
+    amount = CommonUsedMethods :: getFloatFromUser();
 
     income.setDate(date);
     income.setItem(item);
