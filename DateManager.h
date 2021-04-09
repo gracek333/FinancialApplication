@@ -16,10 +16,20 @@ using namespace std;
 class DateManager
 {
 
+    /*int getYearFromDateInString(string dateFromUser);
+    int getMonthFromDateInString(string dateFromUser);
+    int getDayFromDateInString(string dateFromUser);
+    //Date convertDateFromUserToStructure(string dateFromUser);*/
+
 public:
     static int convertDateToIntForVector(Date date);
     static Date getDateFromSystem();
     static Date getDateFromUser();
+    static Date convertDateFromUserToStructure(string dateFromUser);
+    static int getYearFromDateInString(string dateFromUser);
+    static int getMonthFromDateInString(string dateFromUser);
+    static int getDayFromDateInString(string dateFromUser);
+
 };
 
 

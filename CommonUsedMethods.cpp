@@ -33,3 +33,10 @@ string CommonUsedMethods :: convertIntIntoString(int number)
     string str = ss.str();
     return str;
 }
+
+int CommonUsedMethods :: convertStringIntoInt(string numberInString)
+{
+    int number = 0;
+    number = atof(numberInString.c_str());
+    return number;
+}

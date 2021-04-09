@@ -29,7 +29,7 @@ Income FinancesManager :: inputNewIncomeData()
     long int date;
     string item, amount;
 
-    income.setIncomeId(1);
+    income.setIncomeId(1); // wstepnie
     income.setUserId(LOGGED_IN_USER_ID);
 
     system ("cls");
@@ -47,7 +47,7 @@ Income FinancesManager :: inputNewIncomeData()
         }
         else if (choice == 'n' || choice == 'N')
         {
-            //date = DateManager :: convertDateToInt(DateManager :: getDateFromUser);
+            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromUser());
             break;
         }
         else
