@@ -29,6 +29,11 @@ public:
     static int getYearFromDateInString(string dateFromUser);
     static int getMonthFromDateInString(string dateFromUser);
     static int getDayFromDateInString(string dateFromUser);
+    static bool isDateCorrect(string date);
+    static bool isDateFormatCorrect(string date);
+    static bool isDateExisting(string date);
+    static bool checkExistingOfDate(Date dateFromUser);
+    static int returnTotalNumberOfDaysInMonth(int year, int month);
 
 };
 
