@@ -32,7 +32,7 @@ void ExpensesFile :: addExpenseToFile(Expense expense)
     xml.Save(EXPENSES_FILE_NAME);
 }
 
-vector <Expense> ExpensesFile :: getExpensesFromFile()
+vector <Expense> ExpensesFile :: getExpensesOfLoggedUserFromFile(int loggedInUserId)
 {
     Expense expense;
     vector <Expense> expenses;
@@ -55,11 +55,24 @@ vector <Expense> ExpensesFile :: getExpensesFromFile()
             expense.setItem(xml.GetChildData());
             xml.FindChildElem("Amount");
             expense.setAmount(CommonUsedMethods::convertStringToFloat(xml.GetChildData()));
-
-            expenses.push_back(expense);
+            if (expense.getUserId() == loggedInUserId)
+            {
+                expenses.push_back(expense);
+            }
+            setLastExpenseId(expense.getExpenseId());
         }
         xml.Save(EXPENSES_FILE_NAME);
     }
 
     return expenses;
+}
+
+void ExpensesFile :: setLastExpenseId(int newLastExpenseId)
+{
+    lastExpenseId = newLastExpenseId;
+}
+
+int ExpensesFile :: getLastExpenseId()
+{
+    return lastExpenseId;
 }

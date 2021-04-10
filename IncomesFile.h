@@ -12,12 +12,16 @@ using namespace std;
 class IncomesFile
 {
     const string INCOMES_FILE_NAME;
+    int lastIncomeId;
+
+    void setLastIncomeId(int newLasIncomeId);
 
 public:
-    IncomesFile(string incomesFileName) : INCOMES_FILE_NAME(incomesFileName) {};
+    IncomesFile(string incomesFileName) : INCOMES_FILE_NAME(incomesFileName) {lastIncomeId = 0;};
     string getIncomesFileName();
-    vector <Income> getIncomesFromFile();
+    vector <Income> getIncomesOfLoggedUserFromFile(int loggedInUserId);
     void addIncomeToFile(Income income);
+    int getLastIncomeId();
 };
 
 #endif
