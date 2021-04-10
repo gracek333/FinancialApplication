@@ -16,6 +16,7 @@ class IncomesFile
 public:
     IncomesFile(string incomesFileName) : INCOMES_FILE_NAME(incomesFileName) {};
     string getIncomesFileName();
+    vector <Income> getIncomesFromFile();
     void addIncomeToFile(Income income);
 };
 

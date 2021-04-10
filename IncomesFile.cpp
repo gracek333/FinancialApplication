@@ -31,3 +31,35 @@ void IncomesFile :: addIncomeToFile(Income income)
 
     xml.Save(INCOMES_FILE_NAME);
 }
+
+vector <Income> IncomesFile :: getIncomesFromFile()
+{
+    Income income;
+    vector <Income> incomes;
+    CMarkup xml;
+    bool fileExists = xml.Load( INCOMES_FILE_NAME );
+    if (fileExists)
+    {
+        xml.ResetPos();
+        xml.FindElem();
+        xml.IntoElem();
+        while (xml.FindElem("Income"))
+        {
+            xml.FindChildElem("IncomeId");
+            income.setIncomeId(atoi(xml.GetChildData().c_str()));
+            xml.FindChildElem("UserId");
+            income.setUserId(atoi(xml.GetChildData().c_str()));
+            xml.FindChildElem("Date");
+            income.setDate(DateManager::convertDateToIntForVector(DateManager::convertDateFromUserToStructure(xml.GetChildData())));
+            xml.FindChildElem("Item");
+            income.setItem(xml.GetChildData());
+            xml.FindChildElem("Amount");
+            income.setAmount(CommonUsedMethods::convertStringToFloat(xml.GetChildData()));
+
+            incomes.push_back(income);
+        }
+        xml.Save(INCOMES_FILE_NAME);
+    }
+
+    return incomes;
+}
