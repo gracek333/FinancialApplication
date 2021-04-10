@@ -15,15 +15,17 @@ void FinancialApplication :: printAllUsers()
 void FinancialApplication :: logInUser()
 {
     userManager.logInUser();
+    if (userManager.isUserLoggedIn())
+    {
+        financesManager = new FinancesManager(INCOMES_FILE_NAME, EXPENSES_FILE_NAME, userManager.getLoggedInUserId());
+    }
 }
 
 void FinancialApplication :: logOutUser()
 {
     userManager.logOutUser();
-    /*
     delete financesManager;
     financesManager = NULL;
-    */
 
 }
 
@@ -35,6 +37,19 @@ void FinancialApplication :: changeLoggedInUserPassword()
 bool FinancialApplication :: isUserLoggedIn()
 {
     return userManager.isUserLoggedIn();
+}
+
+void FinancialApplication :: addIncome()
+{
+    if (userManager.isUserLoggedIn())
+    {
+        financesManager -> addIncome();
+    }
+    else
+    {
+        cout << "Aby dodac wydatek, nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
 }
 
 char FinancialApplication :: chooseOptionInMainMenu()

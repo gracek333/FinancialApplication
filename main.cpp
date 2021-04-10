@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    FinancialApplication financialApplication("users.xml");
+    FinancialApplication financialApplication("users.xml","incomes.xml","expenses.xml");
 
     char choice;
 
@@ -39,7 +39,7 @@ int main()
             switch (choice)
             {
             case '1':
-                //financialApplication.addIncome();
+                financialApplication.addIncome();
                 break;
             case '2':
                 //financialApplication.addExpense();
@@ -55,8 +55,6 @@ int main()
                 break;
             case '6':
                 financialApplication.changeLoggedInUserPassword();
-                /*financialApplication.printAllUsers();
-                system("pause");*/
                 break;
             case '7':
                 financialApplication.logOutUser();
