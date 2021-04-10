@@ -47,6 +47,19 @@ void FinancialApplication :: addIncome()
     }
     else
     {
+        cout << "Aby dodac przychod, nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
+}
+
+void FinancialApplication :: addExpense()
+{
+    if (userManager.isUserLoggedIn())
+    {
+        financesManager -> addExpense();
+    }
+    else
+    {
         cout << "Aby dodac wydatek, nalezy najpierw sie zalogowac" << endl;
         system("pause");
     }

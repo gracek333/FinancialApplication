@@ -36,6 +36,7 @@ public:
     char chooseOptionInUserMenu();
     bool isUserLoggedIn();
     void addIncome();
+    void addExpense();
 
 };
 
