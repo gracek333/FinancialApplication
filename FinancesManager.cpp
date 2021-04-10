@@ -34,7 +34,7 @@ Income FinancesManager :: inputNewIncomeData()
     float amount;
     string item;
 
-    income.setIncomeId(getIdForNewIncome());
+    income.setIncomeId(incomesFile.getLastIncomeId()+1);
     income.setUserId(LOGGED_IN_USER_ID);
 
     system ("cls");
@@ -132,7 +132,7 @@ Expense FinancesManager :: inputNewExpenseData()
     float amount;
     string item;
 
-    expense.setExpenseId(getIdForNewExpense());
+    expense.setExpenseId(expensesFile.getLastExpenseId() + 1);
     expense.setUserId(LOGGED_IN_USER_ID);
 
     system ("cls");

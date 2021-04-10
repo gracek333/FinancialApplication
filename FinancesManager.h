@@ -32,8 +32,8 @@ public:
     FinancesManager(string incomesFileName, string expensesFileName, int loggedInUserId)
     : incomesFile(incomesFileName), expensesFile(expensesFileName), LOGGED_IN_USER_ID(loggedInUserId)
     {
-        incomes = incomesFile.getIncomesFromFile();
-        expenses = expensesFile.getExpensesFromFile();
+        incomes = incomesFile.getIncomesOfLoggedUserFromFile(LOGGED_IN_USER_ID);
+        expenses = expensesFile.getExpensesOfLoggedUserFromFile(LOGGED_IN_USER_ID);
     };
 
     void addIncome();

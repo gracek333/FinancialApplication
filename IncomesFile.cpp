@@ -32,7 +32,7 @@ void IncomesFile :: addIncomeToFile(Income income)
     xml.Save(INCOMES_FILE_NAME);
 }
 
-vector <Income> IncomesFile :: getIncomesFromFile()
+vector <Income> IncomesFile :: getIncomesOfLoggedUserFromFile(int loggedInUserId)
 {
     Income income;
     vector <Income> incomes;
@@ -55,11 +55,24 @@ vector <Income> IncomesFile :: getIncomesFromFile()
             income.setItem(xml.GetChildData());
             xml.FindChildElem("Amount");
             income.setAmount(CommonUsedMethods::convertStringToFloat(xml.GetChildData()));
-
-            incomes.push_back(income);
+            if (income.getUserId() == loggedInUserId)
+            {
+                incomes.push_back(income);
+            }
+            setLastIncomeId(income.getIncomeId());
         }
         xml.Save(INCOMES_FILE_NAME);
     }
 
     return incomes;
+}
+
+void IncomesFile :: setLastIncomeId(int newLastIncomeId)
+{
+    lastIncomeId = newLastIncomeId;
+}
+
+int IncomesFile :: getLastIncomeId()
+{
+    return lastIncomeId;
 }
