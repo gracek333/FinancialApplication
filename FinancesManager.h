@@ -29,6 +29,7 @@ public:
     FinancesManager(string incomesFileName, string expensesFileName, int loggedInUserId)
     : incomesFile(incomesFileName), expensesFile(expensesFileName), LOGGED_IN_USER_ID(loggedInUserId)
     {
+        incomes = incomesFile.getIncomesFromFile();
         //adresaci = plikZAdresatami.wczytajAdresatowZalogowanegoUzytkownikaZPliku(LOGGED_IN_USER_ID);
     };
 
