@@ -7,22 +7,19 @@
 
 #include "User.h"
 #include "CommonUsedMethods.h"
-//#include "PlikTekstowy.h"
 
 using namespace std;
 
 class UsersFile
 {
     const string USERS_FILE_NAME;
-    //Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 
 public:
-    UsersFile(string usersFileName) : USERS_FILE_NAME(usersFileName) {}; // NAZWA_PLIKU(nazwaPliku) {};
+    UsersFile(string usersFileName) : USERS_FILE_NAME(usersFileName) {};
     string getUsersFileName();
     void addUserDataToFile(User user);
     vector <User> getUsersDataFromFile();
     void saveChangedUserDataToFile(User user);
-//    void zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy);*/
 };
 
 #endif

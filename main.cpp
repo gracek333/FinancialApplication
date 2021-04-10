@@ -42,7 +42,7 @@ int main()
                 financialApplication.addIncome();
                 break;
             case '2':
-                //financialApplication.addExpense();
+                financialApplication.addExpense();
                 break;
             case '3':
                 //financialApplication.showBalanceForCurrentMonth();

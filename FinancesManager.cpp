@@ -38,7 +38,7 @@ Income FinancesManager :: inputNewIncomeData()
     income.setUserId(LOGGED_IN_USER_ID);
 
     system ("cls");
-    cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
+    cout << " >>> DODAWANIE NOWEGO PRZYCHODU <<<" << endl << endl;
 
     while (true)
     {
@@ -92,7 +92,105 @@ void FinancesManager :: showAllIncomes()
     }
     else
     {
-        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
+        cout << endl << "Plik z przychodami jest pusty." << endl << endl;
+    }
+    system("pause");
+}
+
+
+
+
+void FinancesManager :: addExpense()
+{
+    Expense expense;
+    expense = inputNewExpenseData();
+
+    expenses.push_back(expense);
+
+    expensesFile.addExpenseToFile(expense);
+
+    cout << "Nowy przychod zostal dodany. " << endl;
+
+
+    showAllExpenses();
+    system ("pause");
+}
+
+int FinancesManager :: getIdForNewExpense()
+{
+    if (expenses.empty() == true)
+        return 1;
+    else
+        return expenses.back().getExpenseId() + 1;
+}
+
+Expense FinancesManager :: inputNewExpenseData()
+{
+    char choice;
+    Expense expense;
+    long int date;
+    float amount;
+    string item;
+
+    expense.setExpenseId(getIdForNewExpense());
+    expense.setUserId(LOGGED_IN_USER_ID);
+
+    system ("cls");
+    cout << " >>> DODAWANIE NOWEGO WYDATKU <<<" << endl << endl;
+
+    while (true)
+    {
+        cout << "Czy wydatek dotyczy dnia dzisiejszego? (t / n):  ";
+        choice = CommonUsedMethods :: getChar();
+
+        if(choice == 't' || choice == 'T')
+        {
+            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromSystem());
+            break;
+        }
+        else if (choice == 'n' || choice == 'N')
+        {
+            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromUser());
+            break;
+        }
+        else
+        {
+            cout << "Wpisales bledny znak. Sprobuj ponownie." << endl;
+        }
+    }
+    cout << "Podaj kategorie wydatku: ";
+    item = CommonUsedMethods :: getPhrase();
+
+    cout << "Podaj kwote: ";
+    amount = CommonUsedMethods :: getFloatFromUser();
+
+    expense.setDate(date);
+    expense.setItem(item);
+    expense.setAmount(amount);
+
+    return expense;
+}
+
+void FinancesManager :: showAllExpenses()
+{
+    system("cls");
+    if (!expenses.empty())
+    {
+        cout << "             >>> WYDATKI <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+        {
+            cout << endl << "Id wydatku:                 " <<(*itr).getExpenseId() << endl;
+            cout << "User id:               " << (*itr).getUserId() << endl;
+            cout << "Data:           " << (*itr).getDate() << endl;
+            cout << "Kategoria:     " << (*itr).getItem() << endl;
+            cout << "Kwota:              " << (*itr).getAmount() << endl;
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "Plik z wydatkami jest pusty." << endl << endl;
     }
     system("pause");
 }
