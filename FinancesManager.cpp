@@ -97,9 +97,6 @@ void FinancesManager :: showAllIncomes()
     system("pause");
 }
 
-
-
-
 void FinancesManager :: addExpense()
 {
     Expense expense;
@@ -193,4 +190,86 @@ void FinancesManager :: showAllExpenses()
         cout << endl << "Plik z wydatkami jest pusty." << endl << endl;
     }
     system("pause");
+}
+
+void FinancesManager :: showBalanceForCurrentMonth()
+{
+    sort (incomes.begin(), incomes.end(), Income::Less);
+    sort (expenses.begin(), expenses.end(), Expense::Less);
+
+    long int dateForSorting = 0;
+    float sumOfIncomes = 0.0;
+    float sumOfExpenses = 0.0;
+    float balance = 0.0;
+
+    dateForSorting = ((DateManager::convertDateToIntForVector( DateManager::getDateFromSystem())) / 100) * 100;
+
+    sumOfIncomes = showIncomes(dateForSorting);
+    sumOfExpenses = showExpenses(dateForSorting);
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << "Bilans: " << balance << endl;
+
+    system("pause");
+}
+
+float FinancesManager :: showIncomes(long int dateForSorting)
+{
+    float sum = 0.0;
+
+    if (!incomes.empty())
+    {
+        cout << "             >>> PRZYCHODY <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+        {
+            if ((*itr).getDate() > dateForSorting)
+            {
+                cout << endl << "Id przychodu:                 " <<(*itr).getIncomeId() << endl;
+                cout << "User id:               " << (*itr).getUserId() << endl;
+                cout << "Data:           " << (*itr).getDate() << endl;
+                cout << "Kategoria:     " << (*itr).getItem() << endl;
+                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                sum = sum + (*itr).getAmount();
+            }
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "Brak przychodow spelniajacych podane kryterium. " << endl << endl;
+    }
+    cout << "Suma przychodow: " << sum << endl << endl;
+
+    return sum;
+}
+
+float FinancesManager :: showExpenses(long int dateForSorting)
+{
+    float sum = 0.0;
+
+    if (!expenses.empty())
+    {
+        cout << "             >>> PRZYCHODY <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+        {
+            if ((*itr).getDate() > dateForSorting)
+            {
+                cout << endl << "Id wydatku:                 " <<(*itr).getExpenseId() << endl;
+                cout << "User id:               " << (*itr).getUserId() << endl;
+                cout << "Data:           " << (*itr).getDate() << endl;
+                cout << "Kategoria:     " << (*itr).getItem() << endl;
+                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                sum = sum + (*itr).getAmount();
+            }
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "Brak wydatkow spelniajacych podane kryterium. " << endl << endl;
+    }
+    cout << "Suma wydatkow: " << sum << endl << endl;
+
+    return sum;
 }

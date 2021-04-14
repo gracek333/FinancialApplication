@@ -29,6 +29,8 @@ void ExpensesFile :: addExpenseToFile(Expense expense)
     xml.AddElem("Item", expense.getItem());
     xml.AddElem("Amount", CommonUsedMethods :: convertFloatToString(expense.getAmount()));
 
+    setLastExpenseId(expense.getExpenseId());
+
     xml.Save(EXPENSES_FILE_NAME);
 }
 

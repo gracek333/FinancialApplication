@@ -104,3 +104,16 @@ char FinancialApplication :: chooseOptionInUserMenu()
     return choice;
 
 }
+
+void FinancialApplication :: showBalanceForCurrentMonth()
+{
+    if (userManager.isUserLoggedIn())
+    {
+        financesManager -> showBalanceForCurrentMonth();
+    }
+    else
+    {
+        cout << "Aby wyswietlic bilans, nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
+}

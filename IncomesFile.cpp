@@ -29,6 +29,8 @@ void IncomesFile :: addIncomeToFile(Income income)
     xml.AddElem("Item", income.getItem());
     xml.AddElem("Amount", CommonUsedMethods :: convertFloatToString(income.getAmount()));
 
+    setLastIncomeId(income.getIncomeId());
+
     xml.Save(INCOMES_FILE_NAME);
 }
 
