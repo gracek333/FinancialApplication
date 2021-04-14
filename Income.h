@@ -25,10 +25,8 @@ public:
     string getItem();
     float getAmount();
 
-    static bool Less(const Income& x, const Income& y)
-    {
-        return x.date < y.date;
-    }
+    static bool Less(const Income& x, const Income& y);
+
 };
 
 #endif

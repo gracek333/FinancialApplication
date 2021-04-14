@@ -35,4 +35,11 @@
 <Item>dom</Item>
 <Amount>87.87</Amount>
 </Expense>
+<Expense>
+<ExpenseId>6</ExpenseId>
+<UserId>3</UserId>
+<Date>2021-04-15</Date>
+<Item>dom</Item>
+<Amount>32.32</Amount>
+</Expense>
 </Expenses>

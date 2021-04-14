@@ -24,6 +24,9 @@ public:
     long int getDate();
     string getItem();
     float getAmount();
+
+    static bool Less(const Expense& x, const Expense& y);
+
 };
 
 #endif

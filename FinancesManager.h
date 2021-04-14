@@ -29,6 +29,7 @@ class FinancesManager
     int getIdForNewExpense();
     Expense inputNewExpenseData();
     float showIncomes(long int dateForSorting);
+    float showExpenses(long int dateForSorting);
 
 public:
     FinancesManager(string incomesFileName, string expensesFileName, int loggedInUserId)

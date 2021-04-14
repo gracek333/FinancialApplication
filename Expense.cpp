@@ -43,3 +43,8 @@ float Expense :: getAmount()
 {
     return amount;
 }
+
+bool Expense :: Less (const Expense& x, const Expense& y)
+{
+    return x.date < y.date;
+}
