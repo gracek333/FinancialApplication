@@ -5,6 +5,7 @@
 #include <vector>
 #include <windows.h>
 #include <sstream>
+#include <algorithm>
 
 #include "Income.h"
 #include "Expense.h"
@@ -27,6 +28,7 @@ class FinancesManager
 
     int getIdForNewExpense();
     Expense inputNewExpenseData();
+    float showIncomes(long int dateForSorting);
 
 public:
     FinancesManager(string incomesFileName, string expensesFileName, int loggedInUserId)
@@ -40,6 +42,7 @@ public:
     void addExpense();
     void showAllIncomes();
     void showAllExpenses();
+    void showBalanceForCurrentMonth();
 
 };
 

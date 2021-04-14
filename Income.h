@@ -24,6 +24,11 @@ public:
     long int getDate();
     string getItem();
     float getAmount();
+
+    static bool Less(const Income& x, const Income& y)
+    {
+        return x.date < y.date;
+    }
 };
 
 #endif

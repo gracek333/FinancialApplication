@@ -2,6 +2,8 @@
 #include "CommonUsedMethods.h"
 #include "DateManager.h"
 
+
+
 void FinancesManager :: addIncome()
 {
     Income income;
@@ -97,9 +99,6 @@ void FinancesManager :: showAllIncomes()
     system("pause");
 }
 
-
-
-
 void FinancesManager :: addExpense()
 {
     Expense expense;
@@ -193,4 +192,55 @@ void FinancesManager :: showAllExpenses()
         cout << endl << "Plik z wydatkami jest pusty." << endl << endl;
     }
     system("pause");
+}
+
+
+void FinancesManager :: showBalanceForCurrentMonth()
+{
+    sort (incomes.begin(), incomes.end(), Income::Less);
+
+    long int dateForSorting = 0;
+    float sumOfIncomes = 0.0;
+    float sumOfExpenses = 0.0;
+    float balance = 0.0;
+
+    dateForSorting = ((DateManager::convertDateToIntForVector( DateManager::getDateFromSystem())) / 100) * 100;
+    cout << "Data do sortowania: " << dateForSorting << endl;
+
+    sumOfIncomes = showIncomes(dateForSorting);
+
+    system("pause");
+
+}
+
+float FinancesManager :: showIncomes(long int dateForSorting)
+{
+    float sum = 0.0;
+
+    if (!incomes.empty())
+    {
+        cout << "             >>> PRZYCHODY <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+        {
+            if ((*itr).getDate() > dateForSorting)
+            {
+                cout << endl << "Id przychodu:                 " <<(*itr).getIncomeId() << endl;
+                cout << "User id:               " << (*itr).getUserId() << endl;
+                cout << "Data:           " << (*itr).getDate() << endl;
+                cout << "Kategoria:     " << (*itr).getItem() << endl;
+                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                sum = sum + (*itr).getAmount();
+            }
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "Brak przychodow spelniajacych podane kryterium. " << endl << endl;
+    }
+    cout << " Suma przychodow: " << sum << endl;
+    system("pause");
+
+    return sum;
 }

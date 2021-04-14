@@ -45,7 +45,7 @@ int main()
                 financialApplication.addExpense();
                 break;
             case '3':
-                //financialApplication.showBalanceForCurrentMonth();
+                financialApplication.showBalanceForCurrentMonth();
                 break;
             case '4':
                 //financialApplication.showBalanceForPreviosMonth();
