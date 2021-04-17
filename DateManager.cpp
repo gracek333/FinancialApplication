@@ -219,9 +219,28 @@ string DateManager :: convertDateToString(Date date)
 
 string DateManager :: doAddZero(string monthOrDay)
 {
-    if(monthOrDay.length() == 1)
+    if (monthOrDay.length() == 1)
     {
         monthOrDay = "0" + monthOrDay;
     }
     return monthOrDay;
+}
+
+Date DateManager :: getLastDateForPreviousMonth()
+{
+    Date date;
+    date = getDateFromSystem();
+
+    if (date.getMonth() == 1)
+    {
+        date.setYear(date.getYear() - 1);
+        date.setMonth(12);
+    }
+    else
+    {
+        date.setMonth(date.getMonth() - 1);
+    }
+    date.setDay(returnTotalNumberOfDaysInMonth(date.getYear(), date.getMonth()));
+
+    return date;
 }

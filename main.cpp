@@ -48,7 +48,7 @@ int main()
                 financialApplication.showBalanceForCurrentMonth();
                 break;
             case '4':
-                //financialApplication.showBalanceForPreviosMonth();
+                financialApplication.showBalanceForPreviousMonth();
                 break;
             case '5':
                 //financialApplication.showBalanceForSelectedPeriod();
