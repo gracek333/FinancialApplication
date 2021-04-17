@@ -273,3 +273,93 @@ float FinancesManager :: showExpenses(long int dateForSorting)
 
     return sum;
 }
+
+ void FinancesManager :: showBalanceForPreviousMonth()
+ {
+    sort (incomes.begin(), incomes.end(), Income::Less);
+    sort (expenses.begin(), expenses.end(), Expense::Less);
+
+    Date date;
+    long int upperBoundDateForSorting = 0;
+    long int lowerBoundDateForSorting = 0;
+    float sumOfIncomes = 0.0;
+    float sumOfExpenses = 0.0;
+    float balance = 0.0;
+
+
+    date = DateManager :: getLastDateForPreviousMonth();
+
+    upperBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)));
+    lowerBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)) / 100) * 100;
+
+    cout << upperBoundDateForSorting << "   " << lowerBoundDateForSorting << endl;
+
+    sumOfIncomes = showIncomesForPreviousMonth(upperBoundDateForSorting, lowerBoundDateForSorting);
+    sumOfExpenses = showExpensesForPreviousMonth(upperBoundDateForSorting, lowerBoundDateForSorting);
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << "Bilans: " << balance << endl;
+
+    system("pause");
+ }
+
+   float  FinancesManager :: showIncomesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting)
+   {
+    float sum = 0.0;
+
+    if (!incomes.empty())
+    {
+        cout << "             >>> PRZYCHODY <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
+        {
+            if (((*itr).getDate() > lowerBoundDateForSorting) && ((*itr).getDate() <= upperBoundDateForSorting) )
+            {
+                cout << endl << "Id przychodu:                 " <<(*itr).getIncomeId() << endl;
+                cout << "User id:               " << (*itr).getUserId() << endl;
+                cout << "Data:           " << (*itr).getDate() << endl;
+                cout << "Kategoria:     " << (*itr).getItem() << endl;
+                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                sum = sum + (*itr).getAmount();
+            }
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "Brak przychodow spelniajacych podane kryterium. " << endl << endl;
+    }
+    cout << "Suma przychodow: " << sum << endl << endl;
+
+    return sum;
+   }
+
+    float  FinancesManager :: showExpensesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting)
+   {
+    float sum = 0.0;
+
+    if (!expenses.empty())
+    {
+        cout << "             >>> PRZYCHODY <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
+        {
+            if (((*itr).getDate() > lowerBoundDateForSorting) && ((*itr).getDate() <= upperBoundDateForSorting) )
+            {
+                cout << endl << "Id wydatku:                 " <<(*itr).getExpenseId() << endl;
+                cout << "User id:               " << (*itr).getUserId() << endl;
+                cout << "Data:           " << (*itr).getDate() << endl;
+                cout << "Kategoria:     " << (*itr).getItem() << endl;
+                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                sum = sum + (*itr).getAmount();
+            }
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << endl << "Brak wydatkow spelniajacych podane kryterium. " << endl << endl;
+    }
+    cout << "Suma wydatkow: " << sum << endl << endl;
+
+    return sum;
+   }

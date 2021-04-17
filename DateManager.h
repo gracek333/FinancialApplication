@@ -33,6 +33,7 @@ public:
     static Date convertDateFromIntToStructure(int dateInInt);
     static string convertDateToString(Date date);
     static string doAddZero(string monthOrDay);
+    static Date getLastDateForPreviousMonth();
 
 };
 

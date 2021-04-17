@@ -30,6 +30,8 @@ class FinancesManager
     Expense inputNewExpenseData();
     float showIncomes(long int dateForSorting);
     float showExpenses(long int dateForSorting);
+    float showIncomesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting);
+    float showExpensesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting);
 
 public:
     FinancesManager(string incomesFileName, string expensesFileName, int loggedInUserId)
@@ -44,6 +46,7 @@ public:
     void showAllIncomes();
     void showAllExpenses();
     void showBalanceForCurrentMonth();
+    void showBalanceForPreviousMonth();
 
 };
 
