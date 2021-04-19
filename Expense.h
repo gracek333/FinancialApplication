@@ -25,7 +25,7 @@ public:
     string getItem();
     float getAmount();
 
-    static bool Less(const Expense& x, const Expense& y);
+    static bool sortVectorByDatesFromTheOldest(const Expense& x, const Expense& y);
 
 };
 
