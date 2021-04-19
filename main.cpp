@@ -51,7 +51,7 @@ int main()
                 financialApplication.showBalanceForPreviousMonth();
                 break;
             case '5':
-                //financialApplication.showBalanceForSelectedPeriod();
+                financialApplication.showBalanceForSelectedPeriod();
                 break;
             case '6':
                 financialApplication.changeLoggedInUserPassword();

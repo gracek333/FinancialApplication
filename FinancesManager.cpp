@@ -292,7 +292,7 @@ float FinancesManager :: showExpenses(long int dateForSorting)
     upperBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)));
     lowerBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)) / 100) * 100;
 
-    cout << upperBoundDateForSorting << "   " << lowerBoundDateForSorting << endl;
+    //cout << upperBoundDateForSorting << "   " << lowerBoundDateForSorting << endl;
 
     sumOfIncomes = showIncomesForPreviousMonth(upperBoundDateForSorting, lowerBoundDateForSorting);
     sumOfExpenses = showExpensesForPreviousMonth(upperBoundDateForSorting, lowerBoundDateForSorting);
@@ -362,4 +362,38 @@ float FinancesManager :: showExpenses(long int dateForSorting)
     cout << "Suma wydatkow: " << sum << endl << endl;
 
     return sum;
+   }
+
+   void FinancesManager :: showBalanceForSelectedPeriod()
+{
+    sort (incomes.begin(), incomes.end(), Income::Less);
+    sort (expenses.begin(), expenses.end(), Expense::Less);
+
+    float sumOfIncomes = 0.0;
+    float sumOfExpenses = 0.0;
+    float balance = 0.0;
+    long int firstDate, secondDate;
+
+    cout << "Podaj date od ktorej ma zostac wyswietlony bilans." << endl;
+    firstDate = DateManager::convertDateToIntForVector(DateManager::getDateFromUser());
+    cout << "Podaj date do ktorej ma zostac wyswietlony bilans." << endl;
+    secondDate = DateManager::convertDateToIntForVector(DateManager::getDateFromUser());
+
+    cout << firstDate << "    " << secondDate << endl;
+
+    if (firstDate > secondDate)
+    {
+        sumOfIncomes = showIncomesForPreviousMonth(firstDate, secondDate);
+        sumOfExpenses = showExpensesForPreviousMonth(firstDate, secondDate);
+    }
+    else
+    {
+        sumOfIncomes = showIncomesForPreviousMonth(secondDate, firstDate);
+        sumOfExpenses = showExpensesForPreviousMonth(secondDate, firstDate);
+    }
+
+    balance = sumOfIncomes - sumOfExpenses;
+    cout << "Bilans: " << balance << endl;
+
+    system("pause");
    }
