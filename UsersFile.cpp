@@ -65,7 +65,7 @@ vector <User> UsersFile :: getUsersDataFromFile()
 void UsersFile :: saveChangedUserDataToFile(User user)
 {
     CMarkup xml;
-    string strFindItem = CommonUsedMethods::convertIntIntoString(user.getId());
+    string strFindItem = CommonUsedMethods::convertIntToString(user.getId());
     bool fileExists = xml.Load( USERS_FILE_NAME );
 
     if (fileExists)

@@ -206,9 +206,9 @@ string DateManager :: convertDateToString(Date date)
     string dateInString = "";
     string year, month, day;
 
-    year = CommonUsedMethods::convertIntIntoString(date.getYear());
-    month = doAddZero(CommonUsedMethods::convertIntIntoString(date.getMonth()));
-    day = doAddZero(CommonUsedMethods::convertIntIntoString(date.getDay()));
+    year = CommonUsedMethods::convertIntToString(date.getYear());
+    month = doAddZero(CommonUsedMethods::convertIntToString(date.getMonth()));
+    day = doAddZero(CommonUsedMethods::convertIntToString(date.getDay()));
 
 
 

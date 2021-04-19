@@ -14,7 +14,7 @@ public:
 
     static string getPhrase();
     static char getChar();
-    static string convertIntIntoString(int number);
+    static string convertIntToString(int number);
     static int convertStringIntoInt(string numberInString);
     static float getFloatFromUser();
     static bool isNumberFromUserCorrect(string inputData);
