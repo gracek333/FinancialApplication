@@ -130,3 +130,16 @@ void FinancialApplication :: showBalanceForPreviousMonth()
         system("pause");
     }
 }
+
+void FinancialApplication :: showBalanceForSelectedPeriod()
+{
+    if (userManager.isUserLoggedIn())
+    {
+        financesManager -> showBalanceForSelectedPeriod();
+    }
+    else
+    {
+        cout << "Aby wyswietlic bilans, nalezy najpierw sie zalogowac" << endl;
+        system("pause");
+    }
+}
