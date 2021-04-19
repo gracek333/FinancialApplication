@@ -26,7 +26,7 @@ char CommonUsedMethods :: getChar()
     return character;
 }
 
-string CommonUsedMethods :: convertIntIntoString(int number)
+string CommonUsedMethods :: convertIntToString(int number)
 {
     ostringstream ss;
     ss << number;
