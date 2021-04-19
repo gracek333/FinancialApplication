@@ -44,7 +44,7 @@ float Income :: getAmount()
     return amount;
 }
 
-bool Income :: Less(const Income& x, const Income& y)
+bool Income :: sortVectorByDatesFromTheOldest(const Income& x, const Income& y)
 {
     return x.date < y.date;
 }

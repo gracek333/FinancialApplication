@@ -21,7 +21,7 @@
 
 #if defined(MARKUP_STL) && ( defined(MARKUP_WINCONV) || (! defined(MCD_STRERROR)))
 #include <windows.h> // for MultiByteToWideChar, WideCharToMultiByte, FormatMessage
-#endif // need windows.h when STL and (not setlocale or not strerror), MFC afx.h includes it already 
+#endif // need windows.h when STL and (not setlocale or not strerror), MFC afx.h includes it already
 
 #if defined(MARKUP_MBCS) // MBCS/double byte
 #pragma message( "Note: MBCS build (not UTF-8)" )
@@ -361,7 +361,7 @@ int x_GetEncodingCodePage( MCD_CSTR pszEncoding )
 			pEntry += 5;
 			if ( nEntryLen == nEncLen && x_StrNCmp(szEncodingLower,pEntry,nEntryLen) == 0 )
 			{
-				// Convert digits to integer up to code name which always starts with alpha 
+				// Convert digits to integer up to code name which always starts with alpha
 				nCodePage = MCD_PSZTOL( pCodePage, NULL, 10 );
 				break;
 			}
@@ -790,7 +790,7 @@ bool TextEncoding::FindRaggedEnd( int& nTruncBeforeBytes )
 		}
 		else
 		{
-			// Do a conversion-based test unless we can determine it is not multi-byte
+			// Do a conversion-based test unsortVectorByDatesFromTheOldest we can determine it is not multi-byte
 			// If m_strEncoding="" default code page then GetACP can tell us the code page, otherwise just do the test
 #if defined(MARKUP_WINCONV)
 			if ( nCP == 0 )
@@ -815,19 +815,19 @@ bool TextEncoding::FindRaggedEnd( int& nTruncBeforeBytes )
 			if ( nCP == 0 && nMultibyteCharsToTest )
 			{
 				/*
-				1. convert the piece to Unicode with MultiByteToWideChar 
-				2. Identify at least two Unicode code point boundaries at the end of 
-				the converted piece by stepping backwards from the end and re- 
-				converting the final 2 bytes, 3 bytes, 4 bytes etc, comparing the 
-				converted end string to the end of the entire converted piece to find 
-				a valid code point boundary. 
-				3. Upon finding a code point boundary, I still want to make sure it 
-				will convert the same separately on either side of the divide as it 
-				does together, so separately convert the first byte and the remaining 
-				bytes and see if the result together is the same as the whole end, if 
-				not try the first two bytes and the remaining bytes. etc., until I 
-				find a useable dividing point. If none found, go back to step 2 and 
-				get a longer end string to try. 
+				1. convert the piece to Unicode with MultiByteToWideChar
+				2. Identify at least two Unicode code point boundaries at the end of
+				the converted piece by stepping backwards from the end and re-
+				converting the final 2 bytes, 3 bytes, 4 bytes etc, comparing the
+				converted end string to the end of the entire converted piece to find
+				a valid code point boundary.
+				3. Upon finding a code point boundary, I still want to make sure it
+				will convert the same separately on either side of the divide as it
+				does together, so separately convert the first byte and the remaining
+				bytes and see if the result together is the same as the whole end, if
+				not try the first two bytes and the remaining bytes. etc., until I
+				find a useable dividing point. If none found, go back to step 2 and
+				get a longer end string to try.
 				*/
 				m_strToEncoding = MCD_T("UTF-16");
 				m_nToCount = m_nFromLen*2;
@@ -1104,7 +1104,7 @@ struct NodePos
 
 //////////////////////////////////////////////////////////////////////
 // Token struct and tokenizing functions
-// TokenPos handles parsing operations on a constant text pointer 
+// TokenPos handles parsing operations on a constant text pointer
 //
 struct TokenPos
 {
@@ -1195,7 +1195,7 @@ bool TokenPos::FindAttrib( MCD_PCSZ pAttrib, int n/*=0*/, MCD_STR* pstrAttrib/*=
 			// Set right to before closing quote
 			m_nR = m_nNext - 1;
 
-			// Set m_nNext past closing quote unless at end of document
+			// Set m_nNext past closing quote unsortVectorByDatesFromTheOldest at end of document
 			if ( cNext )
 				++m_nNext;
 		}
@@ -1481,7 +1481,7 @@ bool FilePos::FileErrorAddResult()
 	// VC++ leaves MCD_STRERROR undefined and uses FormatMessage
 	// Non-VC++ use strerror (even for MARKUP_WCHAR and convert)
 	// additional notes:
-	// _WIN32_WCE (Windows CE) has no strerror (Embedded VC++ uses FormatMessage) 
+	// _WIN32_WCE (Windows CE) has no strerror (Embedded VC++ uses FormatMessage)
 	// _MSC_VER >= 1310 (VC++ 2003/7.1) has _wcserror (but not used)
 	//
 	const int nErrorBufferSize = 100;
@@ -1557,7 +1557,7 @@ bool FilePos::FileOpen( MCD_CSTR_FILENAME szFileName )
 	// Prepare file
 	bool bSuccess = true;
 	int nBomLen = 0;
-	m_nFileCharUnitSize = 1; // unless UTF-16 BOM
+	m_nFileCharUnitSize = 1; // unsortVectorByDatesFromTheOldest UTF-16 BOM
 	if ( m_nDocFlags & CMarkup::MDF_READFILE )
 	{
 		// Get file length
@@ -2090,7 +2090,7 @@ struct PathPos
 	MCD_PCSZ GetValAndInc() { ++i; MCD_CHAR cEnd=']'; if (p[i]=='\''||p[i]=='\"') cEnd=p[i++]; int iVal=i; IncWord(cEnd); nLen=i-iVal; if (cEnd!=']') ++i; return &p[iVal]; };
 	int GetValOrWordLen() { return nLen; };
 	MCD_CHAR GetChar() { return p[i]; };
-	bool IsAtPathEnd() { return ((!p[i])||(iPathAttribName&&i+2>=iPathAttribName))?true:false; }; 
+	bool IsAtPathEnd() { return ((!p[i])||(iPathAttribName&&i+2>=iPathAttribName))?true:false; };
 	MCD_PCSZ GetPtr() { return &p[i]; };
 	void SaveOffset() { iSave=i; };
 	void RevertOffset() { i=iSave; };
@@ -2326,7 +2326,7 @@ int TokenPos::ParseNode( NodePos& node )
 	// Upon return m_nNext points to the char after the node or tag
 	// m_nL and m_nR are set to name location if it is a tag with a name
 	// node members set to node location, strMeta used for parse error
-	// 
+	//
 	// <!--...--> comment
 	// <!DOCTYPE ...> dtd
 	// <?target ...?> processing instruction
@@ -2893,7 +2893,7 @@ MCD_STR CMarkup::EscapeText( MCD_CSTR szText, int nFlags )
 	// replacing special characters with ampersand escape codes
 	// E.g. convert "6>7" to "6&gt;7"
 	//
-	// &lt;   less than
+	// &lt;   sortVectorByDatesFromTheOldest than
 	// &amp;  ampersand
 	// &gt;   greater than
 	//
@@ -3104,7 +3104,7 @@ MCD_STR CMarkup::UnescapeText( MCD_CSTR szText, int nTextLength /*=-1*/, int nFl
 						pEntry += 4;
 						if ( nEntryLen == nCodeLen && x_StrNCmp(szCodeName,pEntry,nEntryLen) == 0 )
 						{
-							// Convert digits to integer up to code name which always starts with alpha 
+							// Convert digits to integer up to code name which always starts with alpha
 							nUnicode = MCD_PSZTOL( pCodePoint, NULL, 10 );
 							break;
 						}
@@ -3929,7 +3929,7 @@ void CMarkup::x_SetPos( int iPosParent, int iPos, int iPosChild )
 	MARKUP_SETDEBUGSTATE;
 }
 
-#if defined(_DEBUG) // DEBUG 
+#if defined(_DEBUG) // DEBUG
 void CMarkup::x_SetDebugState()
 {
 	// Set m_pDebugCur and m_pDebugPos to point into document
@@ -4155,7 +4155,7 @@ int CMarkup::x_ParseElem( int iPosParent, TokenPos& token )
 
 				// If end tag did not match, top node is end tag that did not match pElem
 				// if end of document, any nodes below top have no end tag
-				// second offset represents location where end tag was expected but end of document or other end tag was found 
+				// second offset represents location where end tag was expected but end of document or other end tag was found
 				// end tag that was found is token.GetTokenText() but not reported in error
 				int nOffset2 = (nTypeFound==0)? token.m_nL-1: MCD_STRLENGTH(m_strDoc);
 				x_AddResult( m_strResult, MCD_T("unended_start_tag"), elemstack.Current().strTagName, 0, pElem->nStart, nOffset2 );
@@ -4302,7 +4302,7 @@ bool CMarkup::x_SetAttrib( int iPos, MCD_PCSZ pAttrib, MCD_PCSZ pValue, int nFla
 	// Create insertion text depending on whether attribute already exists
 	// Decision: for empty value leaving attrib="" instead of removing attrib
 	TokenPos token( m_strDoc, m_nDocFlags );
-	token.m_nNext = nNodeStart + ((m_nNodeType == MNT_ELEMENT)?1:2); 
+	token.m_nNext = nNodeStart + ((m_nNodeType == MNT_ELEMENT)?1:2);
 	int nReplace = 0;
 	int nInsertAt;
 	MCD_STR strEscapedValue = EscapeText( pValue, MNF_ESCAPEQUOTES|nFlags );
@@ -4628,7 +4628,7 @@ bool CMarkup::x_SetElemContent( MCD_PCSZ szContent )
 	node.strMeta = szContent;
 	int iPosBefore = 0;
 	int nReplace = x_InsertNew( iPos, iPosBefore, node );
-	
+
 	// Adjust and link in the inserted elements
 	x_Adjust( iPosChild, node.nStart );
 	ELEM(iPosChild).nStart += node.nStart;
@@ -4657,7 +4657,7 @@ void CMarkup::x_Adjust( int iPos, int nShift, bool bAfterPos /*=false*/ )
 {
 	// Loop through affected elements and adjust indexes
 	// Algorithm:
-	// 1. update children unless bAfterPos
+	// 1. update children unsortVectorByDatesFromTheOldest bAfterPos
 	//    (if no children or bAfterPos is true, length of iPos not affected)
 	// 2. update starts of next siblings and their children
 	// 3. go up until there is a next sibling of a parent and update starts
@@ -4746,7 +4746,7 @@ int CMarkup::x_InsertNew( int iPosParent, int& iPosRel, NodePos& node )
 			node.nStart = ELEM(iPosParent).StartAfter() - ELEM(iPosParent).EndTagLen();
 	}
 
-	// Go up to start of next node, unless its splitting an empty element
+	// Go up to start of next node, unsortVectorByDatesFromTheOldest its splitting an empty element
 	if ( ! (node.nNodeFlags&(MNF_WITHNOLINES|MNF_REPLACE)) && ! bEmptyParentTag )
 	{
 		TokenPos token( m_strDoc, m_nDocFlags );
@@ -5033,7 +5033,7 @@ bool CMarkup::x_AddSubDoc( MCD_PCSZ pSubDoc, int nFlags )
 	bool bBypassSubDoc = false;
 	if ( m_nDocFlags & MDF_WRITEFILE )
 	{
-		// Current position will bypass subdoc unless well-formed single element
+		// Current position will bypass subdoc unsortVectorByDatesFromTheOldest well-formed single element
 		if ( (! bWellFormed) || ELEM(iPos).iElemChild || ELEM(iPos).iElemNext )
 			bBypassSubDoc = true;
 
@@ -5149,7 +5149,7 @@ void CMarkup::x_LinkElem( int iPosParent, int iPosBefore, int iPos )
 	ElemPos* pElem = &ELEM(iPos);
 	if ( m_nDocFlags & MDF_WRITEFILE )
 	{
-		// In file write mode, only keep virtual parent 0 plus one element 
+		// In file write mode, only keep virtual parent 0 plus one element
 		if ( iPosParent )
 			x_ReleasePos( iPosParent );
 		else if ( iPosBefore )

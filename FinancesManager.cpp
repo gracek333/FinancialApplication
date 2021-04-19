@@ -194,8 +194,8 @@ void FinancesManager :: showAllExpenses()
 
 void FinancesManager :: showBalanceForCurrentMonth()
 {
-    sort (incomes.begin(), incomes.end(), Income::Less);
-    sort (expenses.begin(), expenses.end(), Expense::Less);
+    sort (incomes.begin(), incomes.end(), Income::sortVectorByDatesFromTheOldest);
+    sort (expenses.begin(), expenses.end(), Expense::sortVectorByDatesFromTheOldest);
 
     long int dateForSorting = 0;
     float sumOfIncomes = 0.0;
@@ -276,8 +276,8 @@ float FinancesManager :: showExpenses(long int dateForSorting)
 
  void FinancesManager :: showBalanceForPreviousMonth()
  {
-    sort (incomes.begin(), incomes.end(), Income::Less);
-    sort (expenses.begin(), expenses.end(), Expense::Less);
+    sort (incomes.begin(), incomes.end(), Income::sortVectorByDatesFromTheOldest);
+    sort (expenses.begin(), expenses.end(), Expense::sortVectorByDatesFromTheOldest);
 
     Date date;
     long int upperBoundDateForSorting = 0;
@@ -287,7 +287,7 @@ float FinancesManager :: showExpenses(long int dateForSorting)
     float balance = 0.0;
 
 
-    date = DateManager :: getLastDateForPreviousMonth();
+    date = DateManager :: getFinalDateOfPreviousMonth();
 
     upperBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)));
     lowerBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)) / 100) * 100;
@@ -366,8 +366,8 @@ float FinancesManager :: showExpenses(long int dateForSorting)
 
    void FinancesManager :: showBalanceForSelectedPeriod()
 {
-    sort (incomes.begin(), incomes.end(), Income::Less);
-    sort (expenses.begin(), expenses.end(), Expense::Less);
+    sort (incomes.begin(), incomes.end(), Income::sortVectorByDatesFromTheOldest);
+    sort (expenses.begin(), expenses.end(), Expense::sortVectorByDatesFromTheOldest);
 
     float sumOfIncomes = 0.0;
     float sumOfExpenses = 0.0;

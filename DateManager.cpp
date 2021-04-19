@@ -42,6 +42,7 @@ Date DateManager :: getDateFromUser()
     string dateFromUser = "";
     Date dateFromUserInStructure;
     cout << "Wpisz date w formacie [RRRR-MM-DD]:  ";
+
     while (true)
     {
         getline(cin,dateFromUser);
@@ -98,6 +99,7 @@ bool DateManager :: isDateCorrect(string date)
 bool DateManager :: isDateFormatCorrect(string date)
 {
     bool isFormatCorrect = true;
+
     if (date.length() != 10)
     {
         isFormatCorrect = false;
@@ -123,6 +125,7 @@ bool DateManager :: isDateFormatCorrect(string date)
             }
         }
     }
+
     return isFormatCorrect;
 }
 
@@ -151,6 +154,7 @@ bool DateManager :: checkExistingOfDate(Date dateFromUser)
     bool isDateExisting = false;
 
     int totalNumberOfDaysInMonth = returnTotalNumberOfDaysInMonth(dateFromUser.getYear(), dateFromUser.getMonth());
+
     if ((dateFromUser.getDay() > 0) && (dateFromUser.getDay() <= totalNumberOfDaysInMonth))
     {
         isDateExisting = true;
@@ -162,6 +166,7 @@ bool DateManager :: checkExistingOfDate(Date dateFromUser)
 int DateManager :: returnTotalNumberOfDaysInMonth(int year, int month)
 {
     int numberOfDaysInMonth = 0;
+
     if (month == 2)
     {
         if ((year%400 == 0) || ((year%4 == 0) && (year%100 != 0)))
@@ -184,13 +189,13 @@ string DateManager :: convertDateInIntToString(int dateInInt)
     Date date;
     string dateInString = "";
 
-    date = convertDateFromIntToStructure(dateInInt);
+    date = convertDateInIntToStructure(dateInInt);
     dateInString = convertDateToString(date);
 
     return dateInString;
 }
 
-Date DateManager :: convertDateFromIntToStructure(int dateInInt)
+Date DateManager :: convertDateInIntToStructure(int dateInInt)
 {
     Date date;
 
@@ -207,26 +212,25 @@ string DateManager :: convertDateToString(Date date)
     string year, month, day;
 
     year = CommonUsedMethods::convertIntToString(date.getYear());
-    month = doAddZero(CommonUsedMethods::convertIntToString(date.getMonth()));
-    day = doAddZero(CommonUsedMethods::convertIntToString(date.getDay()));
-
-
+    month = addZero(CommonUsedMethods::convertIntToString(date.getMonth()));
+    day = addZero(CommonUsedMethods::convertIntToString(date.getDay()));
 
     dateInString = year + "-" + month + "-" + day;
 
     return dateInString;
 }
 
-string DateManager :: doAddZero(string monthOrDay)
+string DateManager :: addZero(string monthOrDay)
 {
     if (monthOrDay.length() == 1)
     {
         monthOrDay = "0" + monthOrDay;
     }
+
     return monthOrDay;
 }
 
-Date DateManager :: getLastDateForPreviousMonth()
+Date DateManager :: getFinalDateOfPreviousMonth()
 {
     Date date;
     date = getDateFromSystem();
@@ -240,6 +244,7 @@ Date DateManager :: getLastDateForPreviousMonth()
     {
         date.setMonth(date.getMonth() - 1);
     }
+
     date.setDay(returnTotalNumberOfDaysInMonth(date.getYear(), date.getMonth()));
 
     return date;

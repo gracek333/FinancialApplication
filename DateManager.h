@@ -30,10 +30,10 @@ public:
     static bool checkExistingOfDate(Date dateFromUser);
     static int returnTotalNumberOfDaysInMonth(int year, int month);
     static string convertDateInIntToString(int dateInInt);
-    static Date convertDateFromIntToStructure(int dateInInt);
+    static Date convertDateInIntToStructure(int dateInInt);
     static string convertDateToString(Date date);
-    static string doAddZero(string monthOrDay);
-    static Date getLastDateForPreviousMonth();
+    static string addZero(string monthOrDay);
+    static Date getFinalDateOfPreviousMonth();
 
 };
 
