@@ -34,6 +34,7 @@ public:
     static string convertDateToString(Date date);
     static string addZero(string monthOrDay);
     static Date getFinalDateOfPreviousMonth();
+    static long int askUserForDateChoosing();
 
 };
 

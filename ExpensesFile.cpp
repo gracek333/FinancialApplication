@@ -40,11 +40,13 @@ vector <Expense> ExpensesFile :: getExpensesOfLoggedUserFromFile(int loggedInUse
     vector <Expense> expenses;
     CMarkup xml;
     bool fileExists = xml.Load( EXPENSES_FILE_NAME );
+
     if (fileExists)
     {
         xml.ResetPos();
         xml.FindElem();
         xml.IntoElem();
+
         while (xml.FindElem("Expense"))
         {
             xml.FindChildElem("ExpenseId");
@@ -57,12 +59,15 @@ vector <Expense> ExpensesFile :: getExpensesOfLoggedUserFromFile(int loggedInUse
             expense.setItem(xml.GetChildData());
             xml.FindChildElem("Amount");
             expense.setAmount(CommonUsedMethods::convertStringToFloat(xml.GetChildData()));
+
             if (expense.getUserId() == loggedInUserId)
             {
                 expenses.push_back(expense);
             }
+
             setLastExpenseId(expense.getExpenseId());
         }
+
         xml.Save(EXPENSES_FILE_NAME);
     }
 

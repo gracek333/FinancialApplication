@@ -249,3 +249,32 @@ Date DateManager :: getFinalDateOfPreviousMonth()
 
     return date;
 }
+
+long int DateManager :: askUserForDateChoosing()
+{
+    long int date;
+    char choice;
+
+    while (true)
+    {
+        cout << "Czy operacja dotyczy dnia dzisiejszego? (t / n):  ";
+        choice = CommonUsedMethods :: getChar();
+
+        if(choice == 't' || choice == 'T')
+        {
+            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromSystem());
+            return date;
+            break;
+        }
+        else if (choice == 'n' || choice == 'N')
+        {
+            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromUser());
+            return date;
+            break;
+        }
+        else
+        {
+            cout << "Wpisales bledny znak. Sprobuj ponownie." << endl;
+        }
+    }
+}
