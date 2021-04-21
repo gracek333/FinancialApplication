@@ -40,11 +40,13 @@ vector <Income> IncomesFile :: getIncomesOfLoggedUserFromFile(int loggedInUserId
     vector <Income> incomes;
     CMarkup xml;
     bool fileExists = xml.Load( INCOMES_FILE_NAME );
+
     if (fileExists)
     {
         xml.ResetPos();
         xml.FindElem();
         xml.IntoElem();
+
         while (xml.FindElem("Income"))
         {
             xml.FindChildElem("IncomeId");
@@ -57,6 +59,7 @@ vector <Income> IncomesFile :: getIncomesOfLoggedUserFromFile(int loggedInUserId
             income.setItem(xml.GetChildData());
             xml.FindChildElem("Amount");
             income.setAmount(CommonUsedMethods::convertStringToFloat(xml.GetChildData()));
+
             if (income.getUserId() == loggedInUserId)
             {
                 incomes.push_back(income);

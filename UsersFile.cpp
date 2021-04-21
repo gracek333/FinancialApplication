@@ -36,11 +36,13 @@ vector <User> UsersFile :: getUsersDataFromFile()
     vector <User> users;
     CMarkup xml;
     bool fileExists = xml.Load( USERS_FILE_NAME );
+
     if (fileExists)
     {
         xml.ResetPos();
         xml.FindElem();
         xml.IntoElem();
+
         while (xml.FindElem("User"))
         {
             xml.FindChildElem("UserId");
@@ -73,17 +75,19 @@ void UsersFile :: saveChangedUserDataToFile(User user)
         xml.ResetPos();
         xml.FindElem();
         xml.IntoElem();
+
         while ( xml.FindElem("User") )
         {
             xml.FindChildElem( "UserId" );
+
             if ( xml.GetChildData() == strFindItem )
+
                 while (xml.FindChildElem("Password"))
                 {
                     xml.SetChildData(user.getPassword());
                 }
         }
     }
-
     else
     {
         cout << "Nie mozna otworzyc pliku " << USERS_FILE_NAME << endl ;

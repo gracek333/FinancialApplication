@@ -63,4 +63,11 @@
 <Item>infa</Item>
 <Amount>736</Amount>
 </Expense>
+<Expense>
+<ExpenseId>10</ExpenseId>
+<UserId>2</UserId>
+<Date>2020-05-01</Date>
+<Item>hobby</Item>
+<Amount>789.98</Amount>
+</Expense>
 </Expenses>

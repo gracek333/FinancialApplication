@@ -59,7 +59,6 @@ int main()
             case '7':
                 financialApplication.logOutUser();
                 break;
-
             }
         }
     }

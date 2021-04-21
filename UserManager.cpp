@@ -2,7 +2,7 @@
 
 void UserManager :: registerNewUser()
 {
-    //system("cls");
+    system("cls");
     cout << endl << "Rejestracja uzytkownika: " << endl << endl;
 
     User user = inputNewUserData();
@@ -30,12 +30,14 @@ User UserManager :: inputNewUserData()
     user.setSurname(surname);
 
     string login;
+
     do
     {
         cout << "Podaj login: ";
         cin >> login;
         user.setLogin(login);
     } while (isLoginExisting(user.getLogin()) == true);
+
     string password;
     cout << "Podaj haslo: ";
     cin >> password;
@@ -85,6 +87,7 @@ void UserManager :: logInUser()
     login = CommonUsedMethods::getPhrase();
 
     vector <User>::iterator itr = users.begin();
+
     while (itr != users.end())
     {
         if (itr -> getLogin() == login)
@@ -137,7 +140,6 @@ void UserManager :: changeLoggedInUserPassword()
             system("pause");
         }
     }
-
     usersFile.saveChangedUserDataToFile(user);
 }
 
