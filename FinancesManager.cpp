@@ -13,8 +13,6 @@ void FinancesManager :: addIncome()
 
     cout << "Nowy przychod zostal dodany. " << endl;
 
-
-    showAllIncomes();
     system ("pause");
 }
 
@@ -28,45 +26,24 @@ int FinancesManager :: getIdForNewIncome()
 
 Income FinancesManager :: inputNewIncomeData()
 {
-    char choice;
     Income income;
-    long int date;
     float amount;
     string item;
-
-    income.setIncomeId(incomesFile.getLastIncomeId()+1);
-    income.setUserId(LOGGED_IN_USER_ID);
 
     system ("cls");
     cout << " >>> DODAWANIE NOWEGO PRZYCHODU <<<" << endl << endl;
 
-    while (true)
-    {
-        cout << "Czy przychod dotyczy dnia dzisiejszego? (t / n):  ";
-        choice = CommonUsedMethods :: getChar();
+    income.setIncomeId(incomesFile.getLastIncomeId()+1);
+    income.setUserId(LOGGED_IN_USER_ID);
 
-        if(choice == 't' || choice == 'T')
-        {
-            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromSystem());
-            break;
-        }
-        else if (choice == 'n' || choice == 'N')
-        {
-            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromUser());
-            break;
-        }
-        else
-        {
-            cout << "Wpisales bledny znak. Sprobuj ponownie." << endl;
-        }
-    }
+    income.setDate(DateManager::askUserForDateChoosing());
+
     cout << "Podaj kategorie przychodu: ";
     item = CommonUsedMethods :: getPhrase();
 
     cout << "Podaj kwote: ";
     amount = CommonUsedMethods :: getFloatFromUser();
 
-    income.setDate(date);
     income.setItem(item);
     income.setAmount(amount);
 
@@ -76,10 +53,12 @@ Income FinancesManager :: inputNewIncomeData()
 void FinancesManager :: showAllIncomes()
 {
     system("cls");
+
     if (!incomes.empty())
     {
-        cout << "             >>> PRZYCHODY <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "                    >>> PRZYCHODY <<<" << endl;
+        cout << "--------------------------------------------------------------" << endl;
+
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
         {
             cout << endl << "Id przychodu:                 " <<(*itr).getIncomeId() << endl;
@@ -108,8 +87,6 @@ void FinancesManager :: addExpense()
 
     cout << "Nowy przychod zostal dodany. " << endl;
 
-
-    showAllExpenses();
     system ("pause");
 }
 
@@ -123,45 +100,23 @@ int FinancesManager :: getIdForNewExpense()
 
 Expense FinancesManager :: inputNewExpenseData()
 {
-    char choice;
     Expense expense;
-    long int date;
     float amount;
     string item;
-
-    expense.setExpenseId(expensesFile.getLastExpenseId() + 1);
-    expense.setUserId(LOGGED_IN_USER_ID);
 
     system ("cls");
     cout << " >>> DODAWANIE NOWEGO WYDATKU <<<" << endl << endl;
 
-    while (true)
-    {
-        cout << "Czy wydatek dotyczy dnia dzisiejszego? (t / n):  ";
-        choice = CommonUsedMethods :: getChar();
+    expense.setExpenseId(expensesFile.getLastExpenseId() + 1);
+    expense.setUserId(LOGGED_IN_USER_ID);
+    expense.setDate(DateManager::askUserForDateChoosing());
 
-        if(choice == 't' || choice == 'T')
-        {
-            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromSystem());
-            break;
-        }
-        else if (choice == 'n' || choice == 'N')
-        {
-            date = DateManager :: convertDateToIntForVector(DateManager :: getDateFromUser());
-            break;
-        }
-        else
-        {
-            cout << "Wpisales bledny znak. Sprobuj ponownie." << endl;
-        }
-    }
     cout << "Podaj kategorie wydatku: ";
     item = CommonUsedMethods :: getPhrase();
 
     cout << "Podaj kwote: ";
     amount = CommonUsedMethods :: getFloatFromUser();
 
-    expense.setDate(date);
     expense.setItem(item);
     expense.setAmount(amount);
 
@@ -171,10 +126,12 @@ Expense FinancesManager :: inputNewExpenseData()
 void FinancesManager :: showAllExpenses()
 {
     system("cls");
+
     if (!expenses.empty())
     {
-        cout << "             >>> WYDATKI <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "                    >>> WYDATKI <<<" << endl;
+        cout << "--------------------------------------------------------------" << endl;
+
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
         {
             cout << endl << "Id wydatku:                 " <<(*itr).getExpenseId() << endl;
@@ -207,6 +164,8 @@ void FinancesManager :: showBalanceForCurrentMonth()
     sumOfIncomes = showIncomes(dateForSorting);
     sumOfExpenses = showExpenses(dateForSorting);
     balance = sumOfIncomes - sumOfExpenses;
+    cout << "Suma przychodow: " << sumOfIncomes << endl;
+    cout << "Suma wydatkow: " << sumOfExpenses << endl;
     cout << "Bilans: " << balance << endl;
 
     system("pause");
@@ -218,17 +177,15 @@ float FinancesManager :: showIncomes(long int dateForSorting)
 
     if (!incomes.empty())
     {
-        cout << "             >>> PRZYCHODY <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "                    >>> PRZYCHODY <<<" << endl;
+        cout << "--------------------------------------------------------------" << endl;
+        cout << "Data                 Kategoria                 Kwota w zlotych" << endl;
+
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
         {
             if ((*itr).getDate() > dateForSorting)
             {
-                cout << endl << "Id przychodu:                 " <<(*itr).getIncomeId() << endl;
-                cout << "User id:               " << (*itr).getUserId() << endl;
-                cout << "Data:           " << (*itr).getDate() << endl;
-                cout << "Kategoria:     " << (*itr).getItem() << endl;
-                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                cout << DateManager::convertDateInIntToString((*itr).getDate()) << "           " << (*itr).getItem() << "                       " <<  (*itr).getAmount() << endl;
                 sum = sum + (*itr).getAmount();
             }
         }
@@ -238,7 +195,6 @@ float FinancesManager :: showIncomes(long int dateForSorting)
     {
         cout << endl << "Brak przychodow spelniajacych podane kryterium. " << endl << endl;
     }
-    cout << "Suma przychodow: " << sum << endl << endl;
 
     return sum;
 }
@@ -249,17 +205,15 @@ float FinancesManager :: showExpenses(long int dateForSorting)
 
     if (!expenses.empty())
     {
-        cout << "             >>> PRZYCHODY <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "                    >>> WYDATKI <<<" << endl;
+        cout << "--------------------------------------------------------------" << endl;
+        cout << "Data                 Kategoria                 Kwota w zlotych" << endl;
+
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
         {
             if ((*itr).getDate() > dateForSorting)
             {
-                cout << endl << "Id wydatku:                 " <<(*itr).getExpenseId() << endl;
-                cout << "User id:               " << (*itr).getUserId() << endl;
-                cout << "Data:           " << (*itr).getDate() << endl;
-                cout << "Kategoria:     " << (*itr).getItem() << endl;
-                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                cout << DateManager::convertDateInIntToString((*itr).getDate()) << "           " << (*itr).getItem() << "                       " <<  (*itr).getAmount() << endl;
                 sum = sum + (*itr).getAmount();
             }
         }
@@ -269,13 +223,12 @@ float FinancesManager :: showExpenses(long int dateForSorting)
     {
         cout << endl << "Brak wydatkow spelniajacych podane kryterium. " << endl << endl;
     }
-    cout << "Suma wydatkow: " << sum << endl << endl;
 
     return sum;
 }
 
- void FinancesManager :: showBalanceForPreviousMonth()
- {
+void FinancesManager :: showBalanceForPreviousMonth()
+{
     sort (incomes.begin(), incomes.end(), Income::sortVectorByDatesFromTheOldest);
     sort (expenses.begin(), expenses.end(), Expense::sortVectorByDatesFromTheOldest);
 
@@ -286,39 +239,37 @@ float FinancesManager :: showExpenses(long int dateForSorting)
     float sumOfExpenses = 0.0;
     float balance = 0.0;
 
-
     date = DateManager :: getFinalDateOfPreviousMonth();
 
     upperBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)));
     lowerBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)) / 100) * 100;
 
-    //cout << upperBoundDateForSorting << "   " << lowerBoundDateForSorting << endl;
-
     sumOfIncomes = showIncomesForPreviousMonth(upperBoundDateForSorting, lowerBoundDateForSorting);
     sumOfExpenses = showExpensesForPreviousMonth(upperBoundDateForSorting, lowerBoundDateForSorting);
+
+    cout << "Suma przychodow: " << sumOfIncomes << endl;
+    cout << "Suma wydatkow: " << sumOfExpenses << endl;
     balance = sumOfIncomes - sumOfExpenses;
     cout << "Bilans: " << balance << endl;
 
     system("pause");
- }
+}
 
-   float  FinancesManager :: showIncomesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting)
-   {
+float  FinancesManager :: showIncomesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting)
+{
     float sum = 0.0;
 
     if (!incomes.empty())
     {
-        cout << "             >>> PRZYCHODY <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "                    >>> PRZYCHODY <<<" << endl;
+        cout << "--------------------------------------------------------------" << endl;
+        cout << "Data                 Kategoria                 Kwota w zlotych" << endl;
+
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
         {
             if (((*itr).getDate() > lowerBoundDateForSorting) && ((*itr).getDate() <= upperBoundDateForSorting) )
             {
-                cout << endl << "Id przychodu:                 " <<(*itr).getIncomeId() << endl;
-                cout << "User id:               " << (*itr).getUserId() << endl;
-                cout << "Data:           " << (*itr).getDate() << endl;
-                cout << "Kategoria:     " << (*itr).getItem() << endl;
-                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                cout << DateManager::convertDateInIntToString((*itr).getDate()) << "           " << (*itr).getItem() << "                       " <<  (*itr).getAmount() << endl;
                 sum = sum + (*itr).getAmount();
             }
         }
@@ -328,28 +279,25 @@ float FinancesManager :: showExpenses(long int dateForSorting)
     {
         cout << endl << "Brak przychodow spelniajacych podane kryterium. " << endl << endl;
     }
-    cout << "Suma przychodow: " << sum << endl << endl;
 
     return sum;
-   }
+}
 
-    float  FinancesManager :: showExpensesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting)
-   {
+float  FinancesManager :: showExpensesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting)
+{
     float sum = 0.0;
 
     if (!expenses.empty())
     {
-        cout << "             >>> PRZYCHODY <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
+        cout << "                    >>> WYDATKI <<<" << endl;
+        cout << "--------------------------------------------------------------" << endl;
+        cout << "Data                 Kategoria                 Kwota w zlotych" << endl;
+
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
         {
             if (((*itr).getDate() > lowerBoundDateForSorting) && ((*itr).getDate() <= upperBoundDateForSorting) )
             {
-                cout << endl << "Id wydatku:                 " <<(*itr).getExpenseId() << endl;
-                cout << "User id:               " << (*itr).getUserId() << endl;
-                cout << "Data:           " << (*itr).getDate() << endl;
-                cout << "Kategoria:     " << (*itr).getItem() << endl;
-                cout << "Kwota:              " << (*itr).getAmount() << endl;
+                cout << DateManager::convertDateInIntToString((*itr).getDate()) << "           " << (*itr).getItem() << "                       " <<  (*itr).getAmount() << endl;
                 sum = sum + (*itr).getAmount();
             }
         }
@@ -359,12 +307,11 @@ float FinancesManager :: showExpenses(long int dateForSorting)
     {
         cout << endl << "Brak wydatkow spelniajacych podane kryterium. " << endl << endl;
     }
-    cout << "Suma wydatkow: " << sum << endl << endl;
 
     return sum;
-   }
+}
 
-   void FinancesManager :: showBalanceForSelectedPeriod()
+void FinancesManager :: showBalanceForSelectedPeriod()
 {
     sort (incomes.begin(), incomes.end(), Income::sortVectorByDatesFromTheOldest);
     sort (expenses.begin(), expenses.end(), Expense::sortVectorByDatesFromTheOldest);
@@ -376,10 +323,8 @@ float FinancesManager :: showExpenses(long int dateForSorting)
 
     cout << "Podaj date od ktorej ma zostac wyswietlony bilans." << endl;
     firstDate = DateManager::convertDateToIntForVector(DateManager::getDateFromUser());
-    cout << "Podaj date do ktorej ma zostac wyswietlony bilans." << endl;
+    cout << endl << "Podaj date do ktorej ma zostac wyswietlony bilans." << endl;
     secondDate = DateManager::convertDateToIntForVector(DateManager::getDateFromUser());
-
-    cout << firstDate << "    " << secondDate << endl;
 
     if (firstDate > secondDate)
     {
@@ -392,8 +337,10 @@ float FinancesManager :: showExpenses(long int dateForSorting)
         sumOfExpenses = showExpensesForPreviousMonth(secondDate, firstDate);
     }
 
+    cout << "Suma przychodow: " << sumOfIncomes << endl;
+    cout << "Suma wydatkow: " << sumOfExpenses << endl;
     balance = sumOfIncomes - sumOfExpenses;
     cout << "Bilans: " << balance << endl;
 
     system("pause");
-   }
+}
