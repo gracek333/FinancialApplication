@@ -52,7 +52,8 @@ Date DateManager :: getDateFromUser()
             dateFromUserInStructure = convertDateFromUserToStructure(dateFromUser);
             break;
         }
-        cout << "Data nieprawidlowa. Wpisz ponownie istniejaca date w poprawnym formacie " << endl << "np. 2021-02-28   :  ";
+        cout << endl << "Data nieprawidlowa. Wpisz ponownie istniejaca date nieprzekraczajaca " << endl;
+        cout << "ostatniego dnia biezacego miesiaca w poprawnym formacie." << endl <<  "np. 2021-02-28   :  ";
     }
     return dateFromUserInStructure;
 }
@@ -151,6 +152,7 @@ bool DateManager :: isDateExisting(string date)
 
 bool DateManager :: checkExistingOfDate(Date dateFromUser)
 {
+    Date dateFromSystem = getDateFromSystem();
     bool isDateExisting = false;
 
     int totalNumberOfDaysInMonth = returnTotalNumberOfDaysInMonth(dateFromUser.getYear(), dateFromUser.getMonth());
@@ -158,6 +160,11 @@ bool DateManager :: checkExistingOfDate(Date dateFromUser)
     if ((dateFromUser.getDay() > 0) && (dateFromUser.getDay() <= totalNumberOfDaysInMonth))
     {
         isDateExisting = true;
+    }
+
+    if ((dateFromUser.getYear() == dateFromSystem.getYear()) && (dateFromUser.getMonth() > dateFromSystem.getMonth()))
+    {
+        isDateExisting = false;
     }
 
     return isDateExisting;

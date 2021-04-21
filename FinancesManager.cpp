@@ -1,6 +1,7 @@
 #include "FinancesManager.h"
 #include "CommonUsedMethods.h"
 #include "DateManager.h"
+#include <math.h>
 
 void FinancesManager :: addIncome()
 {
@@ -11,7 +12,7 @@ void FinancesManager :: addIncome()
 
     incomesFile.addIncomeToFile(income);
 
-    cout << "Nowy przychod zostal dodany. " << endl;
+    cout << "Nowy przychod zostal dodany. " << endl << endl;
 
     system ("pause");
 }
@@ -85,7 +86,7 @@ void FinancesManager :: addExpense()
 
     expensesFile.addExpenseToFile(expense);
 
-    cout << "Nowy przychod zostal dodany. " << endl;
+    cout << "Nowy przychod zostal dodany. " << endl << endl;
 
     system ("pause");
 }
@@ -166,7 +167,7 @@ void FinancesManager :: showBalanceForCurrentMonth()
     balance = sumOfIncomes - sumOfExpenses;
     cout << "Suma przychodow: " << sumOfIncomes << endl;
     cout << "Suma wydatkow: " << sumOfExpenses << endl;
-    cout << "Bilans: " << balance << endl;
+    cout << "Bilans: " << (round(balance*100))/100 << endl;
 
     system("pause");
 }

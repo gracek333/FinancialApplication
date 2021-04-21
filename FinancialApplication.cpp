@@ -102,7 +102,6 @@ char FinancialApplication :: chooseOptionInUserMenu()
     choice = CommonUsedMethods :: getChar();
 
     return choice;
-
 }
 
 void FinancialApplication :: showBalanceForCurrentMonth()
