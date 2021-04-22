@@ -3,7 +3,7 @@
 void UserManager :: registerNewUser()
 {
     system("cls");
-    cout << endl << "Rejestracja uzytkownika: " << endl << endl;
+    cout  << "Rejestracja uzytkownika: " << endl << endl;
 
     User user = inputNewUserData();
 
@@ -11,7 +11,7 @@ void UserManager :: registerNewUser()
 
     usersFile.addUserDataToFile(user);
 
-    cout << endl << "Konto zalozono pomyslnie" << endl << endl;
+    cout << endl << "Konto zalozono pomyslnie!" << endl << endl;
     system("pause");
 }
 
@@ -21,11 +21,11 @@ User UserManager :: inputNewUserData()
 
     user.setId(getIdForNewUser());
     string name;
-    cout << "Podaj imie ";
+    cout << "Podaj imie: ";
     cin >> name;
     user.setName(name);
     string surname;
-    cout << "Podaj nazwisko ";
+    cout << "Podaj nazwisko: ";
     cin >> surname;
     user.setSurname(surname);
 

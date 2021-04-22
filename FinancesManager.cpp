@@ -174,6 +174,7 @@ void FinancesManager :: showBalanceForCurrentMonth()
 
 float FinancesManager :: showIncomes(long int dateForSorting)
 {
+    system("cls");
     float sum = 0.0;
 
     if (!incomes.empty())
@@ -251,13 +252,14 @@ void FinancesManager :: showBalanceForPreviousMonth()
     cout << "Suma przychodow: " << sumOfIncomes << endl;
     cout << "Suma wydatkow: " << sumOfExpenses << endl;
     balance = sumOfIncomes - sumOfExpenses;
-    cout << "Bilans: " << balance << endl;
+    cout << "Bilans: " << (round(balance*100))/100 << endl;
 
     system("pause");
 }
 
 float  FinancesManager :: showIncomesForPreviousMonth(long int upperBoundDateForSorting, long int lowerBoundDateForSorting)
 {
+    system("cls");
     float sum = 0.0;
 
     if (!incomes.empty())
@@ -341,7 +343,7 @@ void FinancesManager :: showBalanceForSelectedPeriod()
     cout << "Suma przychodow: " << sumOfIncomes << endl;
     cout << "Suma wydatkow: " << sumOfExpenses << endl;
     balance = sumOfIncomes - sumOfExpenses;
-    cout << "Bilans: " << balance << endl;
+    cout << "Bilans: " << (round(balance*100))/100 << endl;
 
     system("pause");
 }
