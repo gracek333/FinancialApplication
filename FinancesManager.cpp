@@ -244,7 +244,7 @@ void FinancesManager :: showBalanceForPreviousMonth()
     date = DateManager :: getFinalDateOfPreviousMonth();
 
     upperBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)));
-    lowerBoundDateForSorting = ((DateManager::convertDateToIntForVector(date)) / 100) * 100;
+    lowerBoundDateForSorting = (((DateManager::convertDateToIntForVector(date)) / 100) * 100) + 1;
 
     sumOfIncomes = showIncomesForPreviousMonth(upperBoundDateForSorting, lowerBoundDateForSorting);
     sumOfExpenses = showExpensesForPreviousMonth(upperBoundDateForSorting, lowerBoundDateForSorting);
@@ -270,7 +270,7 @@ float  FinancesManager :: showIncomesForPreviousMonth(long int upperBoundDateFor
 
         for (vector <Income> :: iterator itr = incomes.begin(); itr != incomes.end(); itr++)
         {
-            if (((*itr).getDate() > lowerBoundDateForSorting) && ((*itr).getDate() <= upperBoundDateForSorting) )
+            if (((*itr).getDate() >= lowerBoundDateForSorting) && ((*itr).getDate() <= upperBoundDateForSorting) )
             {
                 cout << DateManager::convertDateInIntToString((*itr).getDate()) << "           " << (*itr).getItem() << "                       " <<  (*itr).getAmount() << endl;
                 sum = sum + (*itr).getAmount();
@@ -298,7 +298,7 @@ float  FinancesManager :: showExpensesForPreviousMonth(long int upperBoundDateFo
 
         for (vector <Expense> :: iterator itr = expenses.begin(); itr != expenses.end(); itr++)
         {
-            if (((*itr).getDate() > lowerBoundDateForSorting) && ((*itr).getDate() <= upperBoundDateForSorting) )
+            if (((*itr).getDate() >= lowerBoundDateForSorting) && ((*itr).getDate() <= upperBoundDateForSorting) )
             {
                 cout << DateManager::convertDateInIntToString((*itr).getDate()) << "           " << (*itr).getItem() << "                       " <<  (*itr).getAmount() << endl;
                 sum = sum + (*itr).getAmount();
